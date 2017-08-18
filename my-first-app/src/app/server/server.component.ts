@@ -7,4 +7,10 @@ import {Component} from '@angular/core';
 })
 export class ServerComponent {
 
+  serverName = 'WinOSX';
+  isStarted = true;
+
+  isServerStarted() {
+    return this.isStarted;
+  }
 }
