@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
 /*selector: 'app-server', --> with this notation in the html, this has to be used like: <app-servers></app-servers> -
                               This is the most common syntax*/
 /*selector: '[app-servers]', --> with this notation in the html, this has to be used like: <div app-servers></div>*/
@@ -13,7 +12,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServersComponent implements OnInit {
 
-  constructor() { }
+  allowNewServer = false;
+
+  constructor() {
+    setTimeout(() => {
+      this.allowNewServer = true;
+    }, 5000);
+  }
 
   ngOnInit() {
   }
