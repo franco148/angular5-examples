@@ -1,10 +1,11 @@
 <!--<button class="btn btn-primary" disabled>Add Server</button>-->
 <!--Then we are going to bing disabled html property: PropertyBinding feature-->
-<button class="btn btn-primary" [disabled]="!allowNewServer">Add Server</button>
+<button class="btn btn-primary" [disabled]="!allowNewServer" (click)="onServerCreation()">Add Server</button>
 <!--Now we are going to see some details about String interpolation and property binding.
     Some tips here would be use string interpolation when we want to show some value, and
     use property binding when we need to change some status maybe?-->
 <p>{{allowNewServer}}</p>
 <p [innerText]="allowNewServer"></p>
+<p>{{serverCreationStatus}}</p>
 <app-server></app-server>
 <app-server></app-server>
