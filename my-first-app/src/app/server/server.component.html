@@ -6,7 +6,8 @@
 
 <!--Improving the previous code once we learned about ngIf directive.-->
 <!--<h4 [ngStyle]="{'background-color': 'value'}">: this is also a valid way for styling-->
-<h4 [ngStyle]="{backgroundColor: getColor()}">
+<h4 [ngStyle]="{backgroundColor: getColor()}"
+    [ngClass]="{online: serverStatus === 'online'}">
   Server {{ serverName }} has been
   <strong *ngIf="isServerStarted(); else internalErrors">Started Successfully</strong>
   <ng-template #internalErrors>
