@@ -1,0 +1,16 @@
+<!--<h4>
+  Server {{ serverName }} has been
+  <strong *ngIf="isServerStarted()">Started Successfully</strong>
+  <strong *ngIf="!isServerStarted()">Stopped because internal errors</strong>
+</h4>-->
+
+<!--Improving the previous code once we learned about ngIf directive.-->
+<!--<h4 [ngStyle]="{'background-color': 'value'}">: this is also a valid way for styling-->
+<h4 [ngStyle]="{backgroundColor: getColor()}"
+    [ngClass]="{online: serverStatus === 'online'}">
+  Server {{ serverName }} has been
+  <strong *ngIf="isServerStarted(); else internalErrors">Started Successfully</strong>
+  <ng-template #internalErrors>
+    <strong>Stopped because internal errors</strong>
+  </ng-template>
+</h4>
