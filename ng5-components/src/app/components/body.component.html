@@ -3,11 +3,17 @@
     <h1>*ngIf</h1>
     <hr>
 
-    <div class="card text-white bg-primary mb-3">
-      <div class="card-header">Header</div>
+    <button type="button" class="btn btn-outline-primary btn-block" name="button"
+            (click) = "show = !show ">
+      Show/Hide
+    </button>
+    <hr>
+
+    <div *ngIf="show" class="card text-white bg-primary mb-3">
+      <div class="card-header">Frase</div>
       <div class="card-body">
-        <h5 class="card-title">Primary card title</h5>
-        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <h5 class="card-title">{{ frase.author }}</h5>
+        <p class="card-text">{{ frase.message }}</p>
       </div>
     </div>
   </div>
@@ -17,12 +23,7 @@
     <hr>
 
     <ul class="list-group">
-      <li class="list-group-item">Item X</li>
-      <li class="list-group-item">Item X</li>
-      <li class="list-group-item">Item X</li>
-      <li class="list-group-item">Item X</li>
-      <li class="list-group-item">Item X</li>
-      <li class="list-group-item">Item X</li>
+      <li *ngFor="let enemy of characters; let i = index" class="list-group-item">{{i+1}}. {{ enemy }}</li>      
     </ul>
   </div>
 </div>

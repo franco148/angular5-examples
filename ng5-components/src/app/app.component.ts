@@ -5,8 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'app';
-
-  teamName:string = "eXtreme";
-  developer:string = "Franco Arratia."
+  // title = 'app';
+  //
+  // teamName:string = "eXtreme";
+  // developer:string = "Franco Arratia."  
 }
