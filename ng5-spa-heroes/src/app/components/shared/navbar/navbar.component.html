@@ -8,11 +8,20 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home</a>
+      <!-- Active for seeing the menu higlighted -->
+      <!-- Since we are not using any more the approach with #. href="#"
+           (<a class="nav-link" href="#">Home</a>)
+           is not going to work. So we need to follow another approach.
+     -->
+      <!-- <li class="nav-item active"> -->
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['home']">Home</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['heroes']">Heroes</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" [routerLink]="['about']">About</a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
