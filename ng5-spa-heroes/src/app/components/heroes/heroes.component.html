@@ -1,0 +1,45 @@
+<h1 *ngIf="!lookingFor">Heroes <small>Marvel & DC</small> </h1>
+<h1 *ngIf="lookingFor"> Looking by: (<small>{{ lookingFor }}</small>) </h1>
+<hr>
+
+<div *ngIf="heroes.length == 0" class="row">
+  <div class="col-md-12">
+    <div class="alert alert-info" role="alert">
+      Not results for term: {{ lookingFor }}
+    </div>
+  </div>
+</div>
+
+<div class="card-columns">
+
+  <div class="card animated fadeIn fast" *ngFor="let heroe of heroes; let i = index">
+    <!-- The following line of code is based on sintax of AngularJS -->
+    <!-- <img class="card-img-top" src="{{ heroe.img }}" alt="Card image cap"> -->
+
+    <!-- The following line of code is new Angular versions sintax. -->
+    <img class="card-img-top" [src]="heroe.img" [alt]="heroe.nombre">
+    <div class="card-body">
+      <h5 class="card-title">{{ heroe.nombre }}</h5>
+      <p class="card-text">{{ heroe.bio }}</p>
+      <p class="card-text"><small class="text-muted">{{ heroe.aparicion }}</small></p>
+
+      <!-- First option -->
+      <button (click)="seeHero(i)" type="button" name="button"
+              class="btn btn-outline-primary btn-block">See more...</button>
+
+      <!-- Second option -->
+      <!-- <a [routerLink]="['heroe', i]" class="btn btn-outline-primary">See more...</a>
+           This takes like root page the one where the event is occurring.
+           For example in the routes file we would need to specify something like:
+           { path: 'heroes/heroe/:id', component: HeroeComponent },
+
+           But what if we do not want to use like that? Let put a '/' before heroe, and let's see what happens
+
+           It works!!!
+      -->
+      <!-- <a [routerLink]="['/heroe', i]" class="btn btn-outline-primary">See more...</a> -->
+
+    </div>
+  </div>
+
+</div>
