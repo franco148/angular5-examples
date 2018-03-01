@@ -31,4 +31,6 @@ export class AppComponent {
   });
 
   birthDate = new Date();
+
+  myCompleteName = "fraNCo RobErt arratiA lOpez";
 }
