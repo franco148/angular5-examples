@@ -13,12 +13,14 @@ registerLocaleData(localeEs);
 // Local resources
 import { CapitalizedPipe } from './pipes/capitalized.pipe';
 import { SecuredomPipe } from './pipes/securedom.pipe';
+import { PasswdPipe } from './pipes/passwd.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     CapitalizedPipe,
-    SecuredomPipe
+    SecuredomPipe,
+    PasswdPipe
   ],
   imports: [
     BrowserModule

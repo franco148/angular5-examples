@@ -131,6 +131,19 @@
       <td> Capitalized </td>
       <td>{{ myCompleteName | capitalized:false }}</td>
     </tr>
+
+
+    <tr>
+      <td>{{ myPassword }} </td>
+      <td>
+        Password: {{ isEnabled }}
+        <br>
+        <button (click)="isEnabled = !isEnabled"
+                class="btn btn-outline-primary"
+                type="button" name="button">Enable/Disable</button>
+      </td>
+      <td>{{ myPassword | passwd:isEnabled }}</td>
+    </tr>
   </tbody>
 </table>
 

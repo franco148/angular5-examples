@@ -37,4 +37,8 @@ export class AppComponent {
   youtubeVideo = "I8SKx28hKAc";
 
   youtubeVideo2 = "https://www.youtube.com/embed/I8SKx28hKAc"
+
+  myPassword = "MySecurePass";
+  isEnabled = true;
+  
 }
