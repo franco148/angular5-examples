@@ -29,4 +29,6 @@ export class AppComponent {
   valueOfPromise = new Promise((resolve, reject)=>{
     setTimeout(()=>resolve('Data has arrived!'), 3500);
   });
+
+  birthDate = new Date();
 }

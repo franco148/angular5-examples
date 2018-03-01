@@ -1,9 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+// Adding LOCALE_ID for changing date values to spanish
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
 
+// Next lines for chaning to spanish format the dates
+import localeEs from '@angular/common/locales/es';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [
@@ -12,7 +17,8 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  //add required information to provides for locales
+  providers: [{ provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
