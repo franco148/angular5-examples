@@ -87,6 +87,22 @@
       <td> number:'.2-2' </td>
       <td>{{ salary | number:'.2-2' }}</td>
     </tr>
+
+    <tr>
+      <td>{{ valueOfPromise }} </td>
+      <td> async </td>
+      <td>{{ valueOfPromise }}</td>
+    </tr>
+    <!-- <tr>
+      <td>{{ valueOfPromise }} </td>
+      <td> async </td>
+      <td>{{ valueOfPromise | json }}</td>
+    </tr> -->
+    <tr>
+      <td>{{ valueOfPromise }} </td>
+      <td> async </td>
+      <td>{{ valueOfPromise | async }}</td>
+    </tr>
   </tbody>
 </table>
 
