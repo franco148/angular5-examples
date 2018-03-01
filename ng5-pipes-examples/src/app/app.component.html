@@ -1,0 +1,175 @@
+<div class="container">
+  <br>
+  <h1>Pipes</h1>
+  <hr>
+
+  <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Variable</th>
+      <th scope="col">Pipe</th>
+      <th scope="col">Product</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ name }}</td>
+      <td> uppercase </td>
+      <td>{{ name | uppercase }}</td>
+    </tr>
+    <tr>
+      <td>{{ name }}</td>
+      <td> uppercase </td>
+      <td>{{ name | lowercase }}</td>
+    </tr>
+    <tr>
+      <td>{{ name }}</td>
+      <td> slice:3 </td>
+      <td>{{ name | slice:3 }}</td>
+    </tr>
+    <tr>
+      <td>{{ name }}</td>
+      <td> slice:0:3 </td>
+      <td>{{ name | slice:0:3 }}</td>
+    </tr>
+
+    <tr>
+      <td>{{ myArray }}</td>
+      <td> slice:1:5 </td>
+      <td>{{ myArray | slice:1:5 }}</td>
+    </tr>
+
+    <!-- Review the reference of the API -->
+    <tr>
+      <td>{{ PI }}</td>
+      <td> number:'3.0-0' </td>
+      <td>{{ PI | number:'3.0-0' }}</td>
+    </tr>
+    <tr>
+      <td>{{ PI }}</td>
+      <td> number:'1.0-2' </td>
+      <td>{{ PI | number:'1.0-2' }}</td>
+    </tr>
+
+    <tr>
+      <td>{{ newNumber }}</td>
+      <td> percent </td>
+      <td>{{ newNumber | percent }}</td>
+    </tr>
+    <tr>
+      <td>{{ newNumber }}</td>
+      <td> percent:'2.2-2' </td>
+      <td>{{ newNumber | percent:'2.2-2' }}</td>
+    </tr>
+
+    <tr>
+      <td>{{ salary }}</td>
+      <td> currency </td>
+      <td>{{ salary | currency }}</td>
+    </tr>
+    <tr>
+      <td>{{ salary }} in spain</td>
+      <td> currency:'EUR' </td>
+      <td>{{ salary | currency:'EUR' }}</td>
+    </tr>
+    <tr>
+      <td>{{ salary }} in spain</td>
+      <td> currency:'EUR':true </td>
+      <td>{{ salary | currency:'EUR':'false' }}</td>
+    </tr>
+    <tr>
+      <td>{{ salary }} in spain</td>
+      <td> currency:'EUR':true:'4.0-0' </td>
+      <td>{{ salary | currency:'EUR':'false':'4.0-0' }}</td>
+    </tr>
+    <tr>
+      <td>{{ salary }} in spain</td>
+      <td> number:'.2-2' </td>
+      <td>{{ salary | number:'.2-2' }}</td>
+    </tr>
+
+    <tr>
+      <td>{{ valueOfPromise }} </td>
+      <td> async </td>
+      <td>{{ valueOfPromise }}</td>
+    </tr>
+    <!-- <tr>
+      <td>{{ valueOfPromise }} </td>
+      <td> async </td>
+      <td>{{ valueOfPromise | json }}</td>
+    </tr> -->
+    <tr>
+      <td>{{ valueOfPromise }} </td>
+      <td> async </td>
+      <td>{{ valueOfPromise | async }}</td>
+    </tr>
+
+    <tr>
+      <td>{{ birthDate }} </td>
+      <td> date </td>
+      <td>{{ birthDate | date }}</td>
+    </tr>
+    <tr>
+      <td>{{ birthDate }} </td>
+      <td> date:'medium' </td>
+      <td>{{ birthDate | date:'medium' }}</td>
+    </tr>
+    <tr>
+      <td>{{ birthDate }} </td>
+      <td> date:'MMMM - dd' </td>
+      <td>{{ birthDate | date:'MMMM - dd' }}</td>
+    </tr>
+
+
+    <tr>
+      <td>{{ myCompleteName }} </td>
+      <td> Capitalized </td>
+      <td>{{ myCompleteName | capitalized }}</td>
+    </tr>
+    <tr>
+      <td>{{ myCompleteName }} </td>
+      <td> Capitalized </td>
+      <td>{{ myCompleteName | capitalized:false }}</td>
+    </tr>
+
+
+    <tr>
+      <td>{{ myPassword }} </td>
+      <td>
+        Password: {{ isEnabled }}
+        <br>
+        <button (click)="isEnabled = !isEnabled"
+                class="btn btn-outline-primary"
+                type="button" name="button">Enable/Disable</button>
+      </td>
+      <td>{{ myPassword | passwd:isEnabled }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4>Slice</h4>
+<ul>
+  <li *ngFor="let item of myArray | slice:5:20">{{item}}</li>
+</ul>
+
+<h4>JSON</h4>
+{{hero | json}}
+<hr>
+<pre>
+  {{hero | json}}
+</pre>
+
+<h4>Youtube <small>video</small> </h4>
+<hr>
+<!-- //The following is not going to work -->
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/{{youtubeVideo}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+
+
+<!-- //The following does not work as well. -->
+<!-- <iframe width="560" height="315" [src]="youtubeVideo2" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+
+<!-- After work on some fixed the following is going to work perfectly -->
+<iframe width="560" height="315" [src]="youtubeVideo | securedom:'https://www.youtube.com/embed/'" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+<br><br><br><br><br><br><br><br><br><br><br>
+</div>
