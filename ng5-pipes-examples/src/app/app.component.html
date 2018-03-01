@@ -146,5 +146,17 @@
   {{hero | json}}
 </pre>
 
+<h4>Youtube <small>video</small> </h4>
+<hr>
+<!-- //The following is not going to work -->
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/{{youtubeVideo}}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+
+
+<!-- //The following does not work as well. -->
+<!-- <iframe width="560" height="315" [src]="youtubeVideo2" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe> -->
+
+<!-- After work on some fixed the following is going to work perfectly -->
+<iframe width="560" height="315" [src]="youtubeVideo | securedom:'https://www.youtube.com/embed/'" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
 <br><br><br><br><br><br><br><br><br><br><br>
 </div>

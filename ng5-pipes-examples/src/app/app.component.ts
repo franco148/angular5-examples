@@ -33,4 +33,8 @@ export class AppComponent {
   birthDate = new Date();
 
   myCompleteName = "fraNCo RobErt arratiA lOpez";
+
+  youtubeVideo = "I8SKx28hKAc";
+
+  youtubeVideo2 = "https://www.youtube.com/embed/I8SKx28hKAc"
 }
