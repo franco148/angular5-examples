@@ -15,4 +15,14 @@ export class AppComponent {
   newNumber = 0.234;
 
   salary = 1234.5;
+
+  hero = {
+    name: "Logan",
+    key: "Wolverine",
+    age: 500,
+    address: {
+      street: "Eudoro Galindo",
+      number: 1915
+    }
+  }
 }

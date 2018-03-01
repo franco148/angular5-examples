@@ -75,12 +75,12 @@
     <tr>
       <td>{{ salary }} in spain</td>
       <td> currency:'EUR':true </td>
-      <td>{{ salary | currency:'EUR':false }}</td>
+      <td>{{ salary | currency:'EUR':'false' }}</td>
     </tr>
     <tr>
       <td>{{ salary }} in spain</td>
       <td> currency:'EUR':true:'4.0-0' </td>
-      <td>{{ salary | currency:'EUR':false:'4.0-0' }}</td>
+      <td>{{ salary | currency:'EUR':'false':'4.0-0' }}</td>
     </tr>
     <tr>
       <td>{{ salary }} in spain</td>
@@ -95,4 +95,12 @@
   <li *ngFor="let item of myArray | slice:5:20">{{item}}</li>
 </ul>
 
+<h4>JSON</h4>
+{{hero | json}}
+<hr>
+<pre>
+  {{hero | json}}
+</pre>
+
+<br><br><br><br><br><br><br><br><br><br><br>
 </div>
