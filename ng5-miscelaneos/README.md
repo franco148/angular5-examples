@@ -36,3 +36,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 * ngAfterViewInit: After component/children initialization.
 * ngAfterViewChecked: After each revision of components/children.
 * ngOnDestroy: Just before a component or directive is destroyed (or moving to another page).
+
+Lifecycle Hooks in Angular's page documentation.
