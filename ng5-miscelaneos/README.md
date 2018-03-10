@@ -25,3 +25,14 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Components life cycle.
+
+* ngOnInit: When the component is being initialized. (Or after the first ngOnChanges)
+* ngOnChanges: When properties' related data change.
+* ngDoCheck: During each revision of the change detection cycle.
+* ngAfterContentInit: After insert content ( <app-some-page></app-some-page> )
+* ngAfterContentChecked: After content inserted revision.
+* ngAfterViewInit: After component/children initialization.
+* ngAfterViewChecked: After each revision of components/children.
+* ngOnDestroy: Just before a component or directive is destroyed (or moving to another page).
