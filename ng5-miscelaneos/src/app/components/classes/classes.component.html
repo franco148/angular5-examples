@@ -28,3 +28,13 @@
 <h3 [ngClass]="{ 'text-danger':properties.danger, 'text-info': !properties.danger }">
   Hello ngClass with propeties!!!
 </h3>
+
+<br><br>
+<h3>Async Process</h3>
+
+<button (click)="ejectSaveProcess()" [disabled]="loading"
+        class="btn btn-primary" type="button" name="button">
+  <i [ngClass]="{'fa-save': !loading, 'fa-refresh fa-spin':loading}" class="fa"></i>
+  <span *ngIf="!loading">Save changes</span>
+  <span *ngIf="loading">Please wait!</span>
+</button>

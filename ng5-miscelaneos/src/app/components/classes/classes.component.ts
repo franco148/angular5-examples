@@ -9,6 +9,8 @@ export class ClassesComponent implements OnInit {
   alertType:string = "alert-danger";
   textDanger:boolean = false;
 
+  loading:boolean = false;
+
   properties:Object = {
     danger: false
   }
@@ -16,6 +18,12 @@ export class ClassesComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+  }
+
+  ejectSaveProcess() {
+    this.loading = true;
+
+    setTimeout(()=>this.loading = false, 5000);
   }
 
 }
