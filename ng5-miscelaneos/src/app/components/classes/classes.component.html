@@ -1,0 +1,40 @@
+<div [ngClass]="alertType" class="alert" role="alert">
+  This is a primary alert—check it out!
+</div>
+
+<button type="button" class="btn btn-info" (click)="alertType = 'alert-info'; textDanger=false; properties.danger=false;">
+  <i class="fa fa-circle"></i>
+  Alert Info
+</button>
+
+<button type="button" class="btn btn-success" (click)="alertType = 'alert-success'; textDanger=false;">
+  <i class="fa fa-circle"></i>
+  Alert Success
+</button>
+
+<button type="button" class="btn btn-danger" (click)="alertType = 'alert-danger'; textDanger=true; properties.danger=true;">
+  <i class="fa fa-circle"></i>
+  Alert Danger
+</button>
+
+<br><br>
+
+<h3 [ngClass]="{ 'text-danger':textDanger }">
+  Hello header world!!!
+</h3>
+
+<br><br>
+
+<h3 [ngClass]="{ 'text-danger':properties.danger, 'text-info': !properties.danger }">
+  Hello ngClass with propeties!!!
+</h3>
+
+<br><br>
+<h3>Async Process</h3>
+
+<button (click)="ejectSaveProcess()" [disabled]="loading"
+        class="btn btn-primary" type="button" name="button">
+  <i [ngClass]="{'fa-save': !loading, 'fa-refresh fa-spin':loading}" class="fa"></i>
+  <span *ngIf="!loading">Save changes</span>
+  <span *ngIf="loading">Please wait!</span>
+</button>
