@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { AuthService } from '../../services/auth.service';
+
 @Component({
   selector: 'app-protected',
   templateUrl: './protected.component.html',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProtectedComponent implements OnInit {
 
-  constructor() { }
+  profile: any;
+
+  constructor(private authSvr:AuthService) {
+
+  }
 
   ngOnInit() {
+
+    if (this.authSvr.userProfile) {
+     this.profile = this.authSvr.userProfile;
+     console.log(this.profile);
+   } else {
+     this.authSvr.getProfile((err, profile) => {
+       this.profile = profile;
+       console.log(this.profile);
+     });
+   }
   }
 
 }
