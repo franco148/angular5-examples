@@ -4,14 +4,18 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-template',
   templateUrl: './template.component.html',
-  styles: []
+  styles: [`
+    .ng-invalid.ng-touched:not(form) {
+      border: 1px solid red;
+    }
+  `]
 })
 export class TemplateComponent {
 
   user: Object = {
-    name: "Franco",
-    lastName: "Arratia",
-    email: ""
+    name: null,
+    lastName: null,
+    email: null
   }
 
   constructor() { }
