@@ -37,7 +37,13 @@
                placeholder="Apellido"
                name="lastName"
                [(ngModel)]="user.lastName"
-               required>
+               required
+               #lastName="ngModel">
+
+         <div *ngIf="lastName.errors?.required" class="">
+           This is a required field.
+         </div>
+
       </div>
     </div>
 
@@ -53,7 +59,17 @@
              name="email"
              [(ngModel)]="user.email"
              required
-             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+             pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$"
+             #email="ngModel">
+
+     <div *ngIf="email.errors?.required" class="">
+       This is a required field.
+     </div>
+
+     <div *ngIf="email.errors?.pattern" class="">
+        The email address is not correct.
+     </div>
+
     </div>
   </div>
 
