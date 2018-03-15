@@ -84,6 +84,23 @@ export class DataComponent {
 
     //this.dataForm.setValue(this.user);
 
+
+
+    //Verifying changes in the form
+    //This is going to be listening the changes in all controls.
+    // this.dataForm.valueChanges.subscribe(data => {
+    //   console.log(data);
+    // });
+
+    //Listening changes by control
+    this.dataForm.controls['username'].valueChanges.subscribe(data => {
+      console.log(data);
+    });
+
+    //To verify the status of a control.
+    this.dataForm.controls['username'].statusChanges.subscribe(data => {
+      console.log(data);
+    });
   }
 
   saveChanges() {
