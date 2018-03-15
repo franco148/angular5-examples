@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 
 //For using data aproximation feature we need to import ReactiveFormsModule in ap.module.ts
 @Component({
@@ -16,7 +16,8 @@ export class DataComponent {
       name: "Franco",
       lastName: "Arratia"
     },
-    email: "franck_ral@hotmail.com"
+    email: "franck_ral@hotmail.com",
+    hobbies: ["run", "sleep", "eat"]
   }
 
   constructor() {
@@ -61,10 +62,13 @@ export class DataComponent {
       'email': new FormControl('', [
                     Validators.required,
                     Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')
-                  ])
+                  ]),
+      'hobbies': new FormArray([
+        new FormControl('Run', Validators.required)
+      ])
     });
 
-    this.dataForm.setValue(this.user);
+    //this.dataForm.setValue(this.user);
 
   }
 
@@ -78,6 +82,12 @@ export class DataComponent {
 
     //Another approach would be, but it is not good.
     //this.dataForm.controls['email'].setValue('something');
+  }
+
+  addNewHobby() {
+    (<FormArray>this.dataForm.controls['hobbies']).push(
+      new FormControl('Sleep', Validators.required)
+    );
   }
 
 }
