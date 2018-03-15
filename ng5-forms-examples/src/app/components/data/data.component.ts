@@ -57,7 +57,10 @@ export class DataComponent {
                       Validators.required,
                       Validators.minLength(3)
                     ]), //second parameter for validation rules, third async validation
-        'lastName': new FormControl('', Validators.required)
+        'lastName': new FormControl('', [
+                                          Validators.required,
+                                          this.noSmithLastName
+                                        ])
       }),
       'email': new FormControl('', [
                     Validators.required,
@@ -78,7 +81,7 @@ export class DataComponent {
 
     //The following code is for cleaning our form, and it is going to have the initial statuses of its properties.
     //this.dataForm.reset({adding object's properties}); or the following
-    this.dataForm.reset(this.user);
+    //this.dataForm.reset(this.user);
 
     //Another approach would be, but it is not good.
     //this.dataForm.controls['email'].setValue('something');
@@ -88,6 +91,17 @@ export class DataComponent {
     (<FormArray>this.dataForm.controls['hobbies']).push(
       new FormControl('Sleep', Validators.required)
     );
+  }
+
+//For custom validations
+  noSmithLastName(control: FormControl): {[s:string]:boolean} {
+    if (control.value === "smith") {
+        return {
+          nosmith: true
+        }
+    }
+
+    return null;
   }
 
 }
