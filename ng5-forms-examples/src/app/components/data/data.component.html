@@ -1,0 +1,141 @@
+<h4>Formularios <small>Data</small></h4>
+<hr>
+<form [formGroup]="dataForm" (ngSubmit)="saveChanges()">
+
+  <div formGroupName="fullName">
+
+    <!-- <div class="form-group row" [ngClass]="{'has-danger': !dataForm.get('name').valid && dataForm.get('name').touched}"> -->
+    <div class="form-group row" [ngClass]="{'has-danger': !dataForm.controls['fullName'].controls['name'].valid && dataForm.get('fullName.name').touched}">
+      <label class="col-2 col-form-label">Name</label>
+      <div class="col-8">
+
+        <input class="form-control"
+               type="text"
+               placeholder="Name"
+               formControlName="name">
+
+         <!-- <div *ngIf="!dataForm.controls['name'].valid" class="form-control-feedback"> -->
+         <!-- <div *ngIf="dataForm.controls['name'].errors?.required && dataForm.get('name').touched" class="form-control-feedback">
+           This field is required.
+         </div>
+
+         <div *ngIf="dataForm.controls['name'].errors?.minlength && dataForm.get('name').touched" class="form-control-feedback">
+           This field requires at least 3 letters.
+         </div> -->
+
+          <!-- After changed the approach, for validations we will need to change. -->
+         <div *ngIf="dataForm.get('fullName.name').errors?.required && dataForm.get('fullName.name').touched" class="form-control-feedback">
+           This field is required.
+         </div>
+
+         <div *ngIf="dataForm.get('fullName.name').errors?.minlength && dataForm.get('fullName.name').touched" class="form-control-feedback">
+           This field requires at least 3 letters.
+         </div>
+
+      </div>
+    </div>
+
+    <!-- <div class="form-group row" [ngClass]="{'has-danger': !dataForm.get('lastName').valid && dataForm.get('lastName').touched}"> -->
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Last Name</label>
+      <div class="col-8">
+
+        <input class="form-control"
+               type="text"
+               placeholder="Last Name"
+               formControlName="lastName">
+
+        <!-- <div *ngIf="!dataForm.controls['lastName'].valid && dataForm.get('lastName').touched" class="form-control-feedback">
+          This field is required.
+        </div> -->
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- <div class="form-group row" [ngClass]="{'has-danger': !dataForm.get('email').valid && dataForm.get('email').touched}"> -->
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Email</label>
+    <div class="col-md-8">
+
+      <input class="form-control"
+             type="email"
+             placeholder="email address"
+             formControlName="email">
+
+       <!-- <div *ngIf="dataForm.controls['email'].errors?.required && dataForm.get('email').touched" class="form-control-feedback">
+         This field is required.
+       </div>
+
+       <div *ngIf="dataForm.controls['email'].errors?.pattern && dataForm.get('email').touched" class="form-control-feedback">
+         Email address is not valid.
+       </div> -->
+
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Username</label>
+    <div class="col-md-8">
+
+      <input class="form-control"
+             type="text"
+             placeholder="User"
+             formControlName="username">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Password</label>
+    <div class="col-md-8">
+
+      <input class="form-control"
+             type="password"
+             placeholder="Password"
+             formControlName="password1">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Repeat password</label>
+    <div class="col-md-8">
+
+      <input class="form-control"
+             type="password"
+             placeholder="Repeat you password"
+             formControlName="password2">
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Hobbies</label>
+    <div class="input-group col-md-8" formArrayName="hobbies">
+      <input *ngFor="let hobby of dataForm.controls['hobbies'].controls; let idx=index"
+             class="form-control"
+             type="text"
+             [formControlName]="idx">
+    </div>
+
+    <button (click)="addNewHobby()"
+            type="button" class="btn btn-primary">New</button>
+
+  </div>
+
+
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">&nbsp;</label>
+    <div class="input-group col-md-8">
+      <button type="submit" class="btn btn-outline-primary">
+        Guardar
+      </button>
+    </div>
+  </div>
+
+
+  {{ dataForm.valid }}
+  <br>
+  <br>
+  {{ dataForm.status }}
+</form>
