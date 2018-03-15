@@ -68,8 +68,16 @@ export class DataComponent {
                   ]),
       'hobbies': new FormArray([
         new FormControl('Run', Validators.required)
-      ])
+      ]),
+      'password1': new FormControl('', Validators.required),
+      'password2': new FormControl()
     });
+
+    //another way to set validators
+    this.dataForm.controls['password2'].setValidators([
+      Validators.required,
+      this.samePassword.bind(this.dataForm)
+    ]);
 
     //this.dataForm.setValue(this.user);
 
@@ -98,6 +106,21 @@ export class DataComponent {
     if (control.value === "smith") {
         return {
           nosmith: true
+        }
+    }
+
+    return null;
+  }
+
+  // Second custom validator.
+  samePassword(control: FormControl): {[s:string]:boolean} {
+  //this.dataForm was overwritten when a validator is being set in password2
+
+    let forma:any = this;
+
+    if (control.value !== forma.controls['password1'].value) {
+        return {
+          notequal: true
         }
     }
 
