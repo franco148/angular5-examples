@@ -75,15 +75,81 @@
     </div>
   </div>
 
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Country</label>
+    <div class="col-md-8">
+      <select [(ngModel)]="user.country" class="form-control" name="country">
+        <option value="">Select a country</option>
+        <option *ngFor="let country of countries" [value]="country.code">{{ country.name }}</option>
+      </select>
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Gender</label>
+
+    <!-- The following is a static way. -->
+    <!-- <div class="col-md-8">
+      <label class="custom-control custom-radio">
+        <input id="gender" type="radio" name="gender" class="custom-control-input"
+               [(ngModel)]="user.gender"
+               value="Male">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Male</span>
+      </label>
+
+      <label class="custom-control custom-radio">
+        <input id="gender" type="radio" name="gender" class="custom-control-input"
+               [(ngModel)]="user.gender"
+               value="Female">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Female</span>
+      </label>
+    </div> -->
+
+    <div class="col-md-8">
+      <label *ngFor="let gender of genders" class="custom-control custom-radio">
+        <input id="gender" type="radio" name="gender" class="custom-control-input"
+               [(ngModel)]="user.gender"
+               [value]="gender">
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">{{ gender }}</span>
+      </label>
+    </div>
+  </div>
+
+
+  <div class="form-group row">
+    <label class="col-2 col-form-label">Accept</label>
+    <div class="input-group col-md-8">
+      <label class="custom-control custom-checkbox">
+        <input [(ngModel)]="user.accept"
+               name="accept"
+               type="checkbox" class="custom-control-input"
+               required>
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Accept conditions?</span>
+      </label>
+    </div>
+  </div>
+
 
 
   <div class="form-group row">
     <label class="col-2 col-form-label">&nbsp;</label>
     <div class="input-group col-md-8">
-      <button [disabled]="!myForm.valid" type="submit" class="btn btn-outline-primary">
+      <!-- I need to send data for testing purposes, fot that reason, I need to disable validation. -->
+      <!-- <button [disabled]="!myForm.valid" type="submit" class="btn btn-outline-primary"> -->
+      <button type="submit" class="btn btn-outline-primary">
         Guardar
       </button>
     </div>
   </div>
 
 </form>
+
+
+<pre>
+  {{ user | json }}
+</pre>
