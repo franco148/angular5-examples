@@ -1,6 +1,6 @@
 <h4>Formularios <small>Data</small></h4>
 <hr>
-<form [formGroup]="dataForm" (ngSubmit)="saveChanges()" novalidate="novalidate">
+<form [formGroup]="dataForm" (ngSubmit)="saveChanges()">
 
   <div>
 
@@ -10,7 +10,8 @@
 
         <input class="form-control"
                type="text"
-               placeholder="Name">
+               placeholder="Name"
+               formControlName="name">
       </div>
     </div>
 
@@ -20,7 +21,8 @@
 
         <input class="form-control"
                type="text"
-               placeholder="Last Name">
+               placeholder="Last Name"
+               formControlName="lastName">
       </div>
     </div>
 
@@ -32,7 +34,8 @@
 
       <input class="form-control"
              type="email"
-             placeholder="email address">
+             placeholder="email address"
+             formControlName="email">
     </div>
   </div>
 
@@ -47,4 +50,6 @@
     </div>
   </div>
 
+
+  {{ dataForm.valid }}
 </form>

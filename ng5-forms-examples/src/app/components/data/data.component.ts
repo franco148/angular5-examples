@@ -13,14 +13,18 @@ export class DataComponent {
 
   constructor() {
     this.dataForm = new FormGroup({
-      'name': new FormControl('Franco'), //second parameter for validation rules, third async validation
-      'lastName': new FormControl('Arratia'),
-      'email': new FormControl()
+      'name': new FormControl('', Validators.required), //second parameter for validation rules, third async validation
+      'lastName': new FormControl('', Validators.required),
+      'email': new FormControl('', [
+                    Validators.required,
+                    Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')
+                  ])
     });
   }
 
   saveChanges() {
     console.log(this.dataForm.value);
+    console.log(this.dataForm);
   }
 
 }
