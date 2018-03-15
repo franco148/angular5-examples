@@ -11,10 +11,37 @@ export class DataComponent {
 
   dataForm:FormGroup;
 
+  user:Object = {
+    fullName: {
+      name: "Franco",
+      lastName: "Arratia"
+    },
+    email: "franck_ral@hotmail.com"
+  }
+
   constructor() {
+
+    // this.dataForm = new FormGroup({
+    //   'name': new FormControl('', [
+    //                 Validators.required,
+    //                 Validators.minLength(3)
+    //               ]), //second parameter for validation rules, third async validation
+    //   'lastName': new FormControl('', Validators.required),
+    //   'email': new FormControl('', [
+    //                 Validators.required,
+    //                 Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')
+    //               ])
+    // });
+
+    // If I need to work with a little more complex objects.
     this.dataForm = new FormGroup({
-      'name': new FormControl('', Validators.required), //second parameter for validation rules, third async validation
-      'lastName': new FormControl('', Validators.required),
+      'fullName': new FormGroup({
+        'name': new FormControl('', [
+                      Validators.required,
+                      Validators.minLength(3)
+                    ]), //second parameter for validation rules, third async validation
+        'lastName': new FormControl('', Validators.required)
+      }),
       'email': new FormControl('', [
                     Validators.required,
                     Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')
