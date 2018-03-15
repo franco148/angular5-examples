@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { Observable } from 'rxjs/Rx';
+
 
 //For using data aproximation feature we need to import ReactiveFormsModule in ap.module.ts
 @Component({
@@ -69,6 +71,7 @@ export class DataComponent {
       'hobbies': new FormArray([
         new FormControl('Run', Validators.required)
       ]),
+      'username': new FormControl('', Validators.required, this.existUserAsync),
       'password1': new FormControl('', Validators.required),
       'password2': new FormControl()
     });
@@ -125,6 +128,21 @@ export class DataComponent {
     }
 
     return null;
+  }
+
+  existUserAsync(control: FormControl): Promise<any>|Observable<any> {
+
+    let promise = new Promise((resolve, reject)=>{
+      setTimeout(()=>{
+        if (control.value === "franco.fral") {
+            resolve({exists: true});
+        } else {
+          resolve(null);
+        }
+      }, 5000);
+    });
+
+    return promise;
   }
 
 }
