@@ -4,7 +4,9 @@ import { Subject } from 'rxjs';
 
 import { User } from './user.model';
 import { AuthData } from './auth-data.model';
+import { Router } from '@angular/router';
 
+// The following decorator allows us to make the service injectable.
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +18,7 @@ export class AuthService {
   // Before using this sevice in other places and use the same instance of it, we need to provide it
   // For that, we need to add as provider in our app.module.ts file
   // providers: [AuthService]
-  constructor() { }
+  constructor(private router: Router) { }
 
   registerUser(authData: AuthData) {
     // For now we are not calling a sevice. So information will be dummy information.
@@ -25,7 +27,7 @@ export class AuthService {
       userId: Math.round(Math.random() * 10000).toString()
     };
 
-    this.authChange.next(true);
+    this.authSuccessfully();
   }
 
   login(authData: AuthData) {
@@ -35,12 +37,13 @@ export class AuthService {
       userId: Math.round(Math.random() * 10000).toString()
     };
 
-    this.authChange.next(true);
+    this.authSuccessfully();
   }
 
   logout() {
     this.user = null;
     this.authChange.next(false);
+    this.router.navigate(['/login']);
   }
 
   getUser() {
@@ -53,5 +56,10 @@ export class AuthService {
 
   isAuth() {
     return this.user != null;
+  }
+
+  private authSuccessfully() {
+    this.authChange.next(true);
+    this.router.navigate(['/training']);
   }
 }
