@@ -9,7 +9,7 @@ import { Exercise } from '../exercise.model';
 })
 export class NewTrainingComponent implements OnInit {
 
-  @Output() trainingStart = new EventEmitter<void>();
+  // @Output() trainingStart = new EventEmitter<void>();
   exercises: Exercise[] = [];
 
   constructor(public trainingService: TrainingService) { }
@@ -19,6 +19,7 @@ export class NewTrainingComponent implements OnInit {
   }
 
   onStartTraining() {
-    this.trainingStart.emit();
+    // this.trainingStart.emit();
+    // this.trainingService.startExercise()
   }
 }
