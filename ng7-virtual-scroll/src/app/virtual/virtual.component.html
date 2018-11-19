@@ -1,3 +1,10 @@
-<p>
-  virtual works!
-</p>
+<h1>Virtual Scroll</h1>
+<hr>
+
+<!--This component needs to have itemSize property value-->
+<cdk-virtual-scroll-viewport itemSize="50" class="list-container list-group">
+  <div class="list-group-item"
+       *cdkVirtualFor="let person of people; let i = index; let c = count">
+    Item {{i}} / {{c}}
+  </div>
+</cdk-virtual-scroll-viewport>
