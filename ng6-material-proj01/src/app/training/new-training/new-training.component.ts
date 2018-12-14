@@ -3,8 +3,7 @@ import { NgForm } from '@angular/forms';
 
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-
-
+import { map } from 'rxjs/operators';
 
 import { TrainingService } from '../training.service';
 import { Exercise } from '../exercise.model';
@@ -30,7 +29,19 @@ export class NewTrainingComponent implements OnInit {
     //   console.log(result);
     // });
 
-    this.exercises = this.db.collection('availableExercises').valueChanges();
+    // First approach, this does not bring ID information from firestore
+    // this.exercises = this.db.collection('availableExercises').valueChanges();
+
+    // The following gets the metadata.
+    this.db.collection('availableExercises').snapshotChanges()
+    .pipe(map(docArray => {
+      return docArray.map(doc => {
+        return {
+          id: doc.payload.doc.id,
+        ...doc.payload.doc.data()
+        }
+      })
+    })).subscribe(result => console.log(result));
   }
 
   onStartTraining(form: NgForm) {
