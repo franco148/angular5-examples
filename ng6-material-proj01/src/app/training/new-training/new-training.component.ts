@@ -17,7 +17,7 @@ export class NewTrainingComponent implements OnInit {
 
   // @Output() trainingStart = new EventEmitter<void>();
   // exercises: Exercise[] = [];
-  exercises: Observable<any>;
+  exercises: Observable<Exercise[]>;
 
   constructor(public trainingService: TrainingService,
               private db: AngularFirestore) { 
@@ -33,15 +33,17 @@ export class NewTrainingComponent implements OnInit {
     // this.exercises = this.db.collection('availableExercises').valueChanges();
 
     // The following gets the metadata.
-    this.db.collection('availableExercises').snapshotChanges()
+    this.exercises = this.db.collection('availableExercises').snapshotChanges()
     .pipe(map(docArray => {
       return docArray.map(doc => {
         return {
           id: doc.payload.doc.id,
-        ...doc.payload.doc.data()
+          name: doc.payload.doc.data().name,
+          duration: doc.payload.doc.data().duration,
+          calories: doc.payload.doc.data().calories
         }
       })
-    })).subscribe(result => console.log(result));
+    }));
   }
 
   onStartTraining(form: NgForm) {
