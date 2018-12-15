@@ -23,6 +23,21 @@ export class AuthService {
   // providers: [AuthService]
   constructor(private router: Router, private afAuth: AngularFireAuth, private trainingService: TrainingService) { }
 
+  initAuthListener() {
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.isAuthenticated = true;
+        this.authChange.next(true);
+        this.router.navigate(['/training']);
+      } else {
+        this.trainingService.cancelSubscriptions();
+        this.isAuthenticated = false;
+        this.authChange.next(false);
+        this.router.navigate(['/login']);
+      }
+    });
+  }
+
   registerUser(authData: AuthData) {
     // For now we are not calling a sevice. So information will be dummy information.
     // this.user = {
@@ -36,9 +51,10 @@ export class AuthService {
       authData.password
     ).then(result => {
       console.log(result);
-      this.authSuccessfully();
+      // The following is replaced by authListener
+      // this.authSuccessfully();
     }).catch(error => {
-      console.log(error);
+      // console.log(error);
     });
 
     // this.authSuccessfully();
@@ -57,9 +73,10 @@ export class AuthService {
       authData.password
     ).then(result => {
       console.log(result);
-      this.authSuccessfully();
+      // The following is replaced by authListener
+      // this.authSuccessfully();
     }).catch(error => {
-      console.log(error);
+      // console.log(error);
     });
 
     // this.authSuccessfully();
@@ -67,11 +84,12 @@ export class AuthService {
 
   logout() {
     // this.user = null;
-    this.trainingService.cancelSubscriptions();
     this.afAuth.auth.signOut();
-    this.isAuthenticated = false;
-    this.authChange.next(false);
-    this.router.navigate(['/login']);
+
+    // this.trainingService.cancelSubscriptions();
+    // this.isAuthenticated = false;
+    // this.authChange.next(false);
+    // this.router.navigate(['/login']);
   }
 
   // getUser() {
@@ -88,8 +106,8 @@ export class AuthService {
   }
 
   private authSuccessfully() {
-    this.isAuthenticated = true;
-    this.authChange.next(true);
-    this.router.navigate(['/training']);
+    // this.isAuthenticated = true;
+    // this.authChange.next(true);
+    // this.router.navigate(['/training']);
   }
 }

@@ -47,6 +47,8 @@ export class TrainingService {
     })).subscribe((exercises: Exercise[]) => {
       this.availableExercises = exercises;
       this.exercisesChanged.next([...this.availableExercises]);
+    }, error => {
+      // console.log(error);
     }));
   }
 
@@ -106,6 +108,8 @@ export class TrainingService {
     this.fbSubs.push(this.db.collection('finishedExercises').valueChanges().subscribe((exercises: Exercise[]) => {
       // this.finishedExercises = exercises;
       this.finishedExercisesChanged.next(exercises);
+    }, error => {
+      // console.log(error);
     }));
   }
 
