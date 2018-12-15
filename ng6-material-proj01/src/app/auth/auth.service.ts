@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 
 import { User } from './user.model';
 import { AuthData } from './auth-data.model';
+import { TrainingService } from '../training/training.service';
 
 // The following decorator allows us to make the service injectable.
 @Injectable({
@@ -20,7 +21,7 @@ export class AuthService {
   // Before using this sevice in other places and use the same instance of it, we need to provide it
   // For that, we need to add as provider in our app.module.ts file
   // providers: [AuthService]
-  constructor(private router: Router, private afAuth: AngularFireAuth) { }
+  constructor(private router: Router, private afAuth: AngularFireAuth, private trainingService: TrainingService) { }
 
   registerUser(authData: AuthData) {
     // For now we are not calling a sevice. So information will be dummy information.
@@ -66,6 +67,8 @@ export class AuthService {
 
   logout() {
     // this.user = null;
+    this.trainingService.cancelSubscriptions();
+    this.afAuth.auth.signOut();
     this.isAuthenticated = false;
     this.authChange.next(false);
     this.router.navigate(['/login']);
