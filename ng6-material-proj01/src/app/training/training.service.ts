@@ -13,6 +13,7 @@ export class TrainingService {
 
   exerciseChanged = new Subject<Exercise>();
   exercisesChanged = new Subject<Exercise[]>();
+  finishedExercisesChanged = new Subject<Exercise[]>();
 
   // The following code is replaced with data get from Firebase.
   // private availableExercises: Exercise[] = [
@@ -25,7 +26,7 @@ export class TrainingService {
   private availableExercises: Exercise[] = [];
 
   private runningExercise: Exercise;
-  private exercises: Exercise[] = [];
+  // private finishedExercises: Exercise[] = [];
 
   constructor(private db: AngularFirestore) { }
 
@@ -95,8 +96,13 @@ export class TrainingService {
     this.exerciseChanged.next(null);
   }
 
-  getCompletedOrCancelledExercises() {
-    return this.exercises.slice();
+  fetchCompletedOrCancelledExercises() {
+    // return this.finishedExercises.slice();
+
+    this.db.collection('finishedExercises').valueChanges().subscribe((exercises: Exercise[]) => {
+      // this.finishedExercises = exercises;
+      this.finishedExercisesChanged.next(exercises);
+    });
   }
 
   private addDataToDatabase(exercise: Exercise) {
