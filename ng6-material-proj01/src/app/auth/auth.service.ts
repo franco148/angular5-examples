@@ -14,7 +14,8 @@ import { AuthData } from './auth-data.model';
 export class AuthService {
 
   authChange = new Subject<boolean>();
-  private user: User;
+  // private user: User;
+  private isAuthenticated = false;
 
   // Before using this sevice in other places and use the same instance of it, we need to provide it
   // For that, we need to add as provider in our app.module.ts file
@@ -64,24 +65,27 @@ export class AuthService {
   }
 
   logout() {
-    this.user = null;
+    // this.user = null;
+    this.isAuthenticated = false;
     this.authChange.next(false);
     this.router.navigate(['/login']);
   }
 
-  getUser() {
-    // But if we return like the following, any change outside it is going to take effect in local information.
-    // For avoiding that we need to return a copy of it.
-    // return this.user;
+  // getUser() {
+  //   // But if we return like the following, any change outside it is going to take effect in local information.
+  //   // For avoiding that we need to return a copy of it.
+  //   // return this.user;
 
-    return {...this.user};
-  }
+  //   return {...this.user};
+  // }
 
   isAuth() {
-    return this.user != null;
+    // return this.user != null;
+    return this.isAuthenticated;
   }
 
   private authSuccessfully() {
+    this.isAuthenticated = true;
     this.authChange.next(true);
     this.router.navigate(['/training']);
   }
