@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 import { Subject } from 'rxjs';
 
 import { User } from './user.model';
 import { AuthData } from './auth-data.model';
-import { Router } from '@angular/router';
 
 // The following decorator allows us to make the service injectable.
 @Injectable({
@@ -18,26 +19,48 @@ export class AuthService {
   // Before using this sevice in other places and use the same instance of it, we need to provide it
   // For that, we need to add as provider in our app.module.ts file
   // providers: [AuthService]
-  constructor(private router: Router) { }
+  constructor(private router: Router, private afAuth: AngularFireAuth) { }
 
   registerUser(authData: AuthData) {
     // For now we are not calling a sevice. So information will be dummy information.
-    this.user = {
-      email: authData.email,
-      userId: Math.round(Math.random() * 10000).toString()
-    };
+    // this.user = {
+    //   email: authData.email,
+    //   userId: Math.round(Math.random() * 10000).toString()
+    // };
 
-    this.authSuccessfully();
+    // Replace previous call with AngularFire approach.
+    this.afAuth.auth.createUserWithEmailAndPassword(
+      authData.email,
+      authData.password
+    ).then(result => {
+      console.log(result);
+      this.authSuccessfully();
+    }).catch(error => {
+      console.log(error);
+    });
+
+    // this.authSuccessfully();
   }
 
   login(authData: AuthData) {
     // For now we are not calling a sevice. So information will be dummy information.
-    this.user = {
-      email: authData.email,
-      userId: Math.round(Math.random() * 10000).toString()
-    };
+    // this.user = {
+    //   email: authData.email,
+    //   userId: Math.round(Math.random() * 10000).toString()
+    // };
 
-    this.authSuccessfully();
+    // Replace previous call with AngularFire approach.
+    this.afAuth.auth.signInWithEmailAndPassword(
+      authData.email,
+      authData.password
+    ).then(result => {
+      console.log(result);
+      this.authSuccessfully();
+    }).catch(error => {
+      console.log(error);
+    });
+
+    // this.authSuccessfully();
   }
 
   logout() {
