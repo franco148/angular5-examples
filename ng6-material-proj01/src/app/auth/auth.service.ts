@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 
+import { MatSnackBar } from '@angular/material';
 import { Subject } from 'rxjs';
 
 import { User } from './user.model';
@@ -21,7 +22,10 @@ export class AuthService {
   // Before using this sevice in other places and use the same instance of it, we need to provide it
   // For that, we need to add as provider in our app.module.ts file
   // providers: [AuthService]
-  constructor(private router: Router, private afAuth: AngularFireAuth, private trainingService: TrainingService) { }
+  constructor(private router: Router,
+              private afAuth: AngularFireAuth,
+              private trainingService: TrainingService,
+              private snackBar: MatSnackBar) { }
 
   initAuthListener() {
     this.afAuth.authState.subscribe(user => {
@@ -55,6 +59,9 @@ export class AuthService {
       // this.authSuccessfully();
     }).catch(error => {
       // console.log(error);
+      this.snackBar.open(error.message, null, {
+        duration: 3000
+      });
     });
 
     // this.authSuccessfully();
@@ -77,6 +84,9 @@ export class AuthService {
       // this.authSuccessfully();
     }).catch(error => {
       // console.log(error);
+      this.snackBar.open(error.message, null, {
+        duration: 3000
+      });
     });
 
     // this.authSuccessfully();
