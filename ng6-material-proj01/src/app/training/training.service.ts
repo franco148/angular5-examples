@@ -39,10 +39,11 @@ export class TrainingService {
       return docArray.map(doc => {
         return {
           id: doc.payload.doc.id,
-          name: (doc.payload.doc.data() as Exercise).name,
-          duration: (doc.payload.doc.data() as Exercise).duration,
-          calories: (doc.payload.doc.data() as Exercise).calories
-        };
+          // name: (doc.payload.doc.data() as Exercise).name,
+          // duration: (doc.payload.doc.data() as Exercise).duration,
+          // calories: (doc.payload.doc.data() as Exercise).calories
+          ...doc.payload.doc.data()
+        } as Exercise;
       });
     })).subscribe((exercises: Exercise[]) => {
       this.availableExercises = exercises;
