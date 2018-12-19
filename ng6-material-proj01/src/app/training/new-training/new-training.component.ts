@@ -18,14 +18,15 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
   // @Output() trainingStart = new EventEmitter<void>();
   exercises: Exercise[] = [];
   // exercises: Observable<Exercise[]>;
-  exerciseSubscription: Subscription
+  exerciseSubscription: Subscription;
+  isLoading = false;
 
   constructor(public trainingService: TrainingService,
-              private db: AngularFirestore) { 
+              private db: AngularFirestore) {
   }
 
   ngOnInit() {
-    // this.exercises = this.trainingService.getAvailableExercises();    
+    // this.exercises = this.trainingService.getAvailableExercises();
     // this.db.collection('availableExercises').valueChanges().subscribe(result => {
     //   console.log(result);
     // });
@@ -45,7 +46,11 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
     //     }
     //   })
     // }));
-    this.exerciseSubscription = this.trainingService.exercisesChanged.subscribe(exercises => (this.exercises = exercises));
+    this.isLoading = true;
+    this.exerciseSubscription = this.trainingService.exercisesChanged.subscribe(exercises => {
+      this.exercises = exercises;
+      this.isLoading = false;
+    });
     this.trainingService.fetchAvailableExercises();
   }
 
