@@ -46,11 +46,17 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
     //     }
     //   })
     // }));
-    this.isLoading = true;
+
     this.exerciseSubscription = this.trainingService.exercisesChanged.subscribe(exercises => {
       this.exercises = exercises;
       this.isLoading = false;
     });
+    // this.trainingService.fetchAvailableExercises();
+    this.fetchExercises();
+  }
+
+  fetchExercises() {
+    this.isLoading = true;
     this.trainingService.fetchAvailableExercises();
   }
 
