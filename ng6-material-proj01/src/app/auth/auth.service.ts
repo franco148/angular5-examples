@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 import { User } from './user.model';
 import { AuthData } from './auth-data.model';
 import { TrainingService } from '../training/training.service';
+import { UIService } from '../shared/ui.service';
 
 // The following decorator allows us to make the service injectable.
 @Injectable({
@@ -21,7 +22,10 @@ export class AuthService {
   // Before using this sevice in other places and use the same instance of it, we need to provide it
   // For that, we need to add as provider in our app.module.ts file
   // providers: [AuthService]
-  constructor(private router: Router, private afAuth: AngularFireAuth, private trainingService: TrainingService) { }
+  constructor(private router: Router,
+              private afAuth: AngularFireAuth,
+              private trainingService: TrainingService,
+              private uiService: UIService) { }
 
   initAuthListener() {
     this.afAuth.authState.subscribe(user => {
@@ -45,16 +49,24 @@ export class AuthService {
     //   userId: Math.round(Math.random() * 10000).toString()
     // };
 
+    this.uiService.loadingStateChanged.next(true);
+
     // Replace previous call with AngularFire approach.
     this.afAuth.auth.createUserWithEmailAndPassword(
       authData.email,
       authData.password
     ).then(result => {
-      console.log(result);
+      this.uiService.loadingStateChanged.next(false);
       // The following is replaced by authListener
       // this.authSuccessfully();
     }).catch(error => {
+      this.uiService.loadingStateChanged.next(false);
       // console.log(error);
+      // this.snackBar.open(error.message, null, {
+      //   duration: 3000
+      // });
+      // Replaced with a externalized snackbar
+      this.uiService.showSnackbar(error.message, null, 3000);
     });
 
     // this.authSuccessfully();
@@ -67,16 +79,23 @@ export class AuthService {
     //   userId: Math.round(Math.random() * 10000).toString()
     // };
 
+    this.uiService.loadingStateChanged.next(true);
     // Replace previous call with AngularFire approach.
     this.afAuth.auth.signInWithEmailAndPassword(
       authData.email,
       authData.password
     ).then(result => {
-      console.log(result);
+      this.uiService.loadingStateChanged.next(false);
       // The following is replaced by authListener
       // this.authSuccessfully();
     }).catch(error => {
+      this.uiService.loadingStateChanged.next(false);
       // console.log(error);
+      // this.snackBar.open(error.message, null, {
+      //   duration: 3000
+      // });
+      // Replaced with a externalized snackbar
+      this.uiService.showSnackbar(error.message, null, 3000);
     });
 
     // this.authSuccessfully();
