@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { MaterialModule } from '../material.module';
 
@@ -15,7 +16,8 @@ import { SignupComponent } from './signup/signup.component';
     FormsModule,
     ReactiveFormsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    AngularFireAuthModule // imports firebase/auth, only needed for auth features,
   ],
   exports: []
 })
