@@ -12,10 +12,10 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 
 
 import { MaterialModule } from './material.module';
+import { AuthModule } from './auth/auth.module';
+
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
-import { SignupComponent } from './auth/signup/signup.component';
 import { TrainingComponent } from './training/training.component';
 import { CurrentTrainingComponent } from './training/current-training/current-training.component';
 import { NewTrainingComponent } from './training/new-training/new-training.component';
@@ -32,8 +32,6 @@ import { UIService } from './shared/ui.service';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    SignupComponent,
     TrainingComponent,
     CurrentTrainingComponent,
     NewTrainingComponent,
@@ -49,12 +47,11 @@ import { UIService } from './shared/ui.service';
     MaterialModule,
     AppRoutingModule,
     FlexLayoutModule,
-    FormsModule,
-    ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     // AngularFireStorageModule // imports firebase/storage only needed for storage features
+    AuthModule
   ],
   providers: [AuthService, UIService],
   bootstrap: [AppComponent],
