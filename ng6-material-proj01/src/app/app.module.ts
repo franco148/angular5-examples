@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -16,10 +15,6 @@ import { AuthModule } from './auth/auth.module';
 
 
 import { AppComponent } from './app.component';
-import { TrainingComponent } from './training/training.component';
-import { CurrentTrainingComponent } from './training/current-training/current-training.component';
-import { NewTrainingComponent } from './training/new-training/new-training.component';
-import { PastTrainingsComponent } from './training/past-trainings/past-trainings.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { HeaderComponent } from './navigation/header/header.component';
@@ -28,14 +23,11 @@ import { StopTrainingComponent } from './training/current-training/stop-training
 import { AuthService } from './auth/auth.service';
 import { environment } from '../environments/environment';
 import { UIService } from './shared/ui.service';
+import { TrainingModule } from './training/training.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TrainingComponent,
-    CurrentTrainingComponent,
-    NewTrainingComponent,
-    PastTrainingsComponent,
     WelcomeComponent,
     HeaderComponent,
     SidenavListComponent,
@@ -47,11 +39,13 @@ import { UIService } from './shared/ui.service';
     MaterialModule,
     AppRoutingModule,
     FlexLayoutModule,
+    // FormsModule,
+    // ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     // AngularFireStorageModule // imports firebase/storage only needed for storage features
-    AuthModule
+    AuthModule, TrainingModule
   ],
   providers: [AuthService, UIService],
   bootstrap: [AppComponent],
