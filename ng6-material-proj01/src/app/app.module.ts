@@ -23,8 +23,6 @@ import { StopTrainingComponent } from './training/current-training/stop-training
 import { AuthService } from './auth/auth.service';
 import { environment } from '../environments/environment';
 import { UIService } from './shared/ui.service';
-import { TrainingModule } from './training/training.module';
-import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -45,7 +43,8 @@ import { SharedModule } from './shared/shared.module';
     AngularFireModule.initializeApp(environment.firebase), // imports firebase/app needed for everything
     // AngularFireStorageModule // imports firebase/storage only needed for storage features
     AuthModule,
-    TrainingModule
+    // TrainingModule  // This is removed for having Lazy Loading module.
+    AngularFirestoreModule // Reading for fixing a dependency issue for implementing LazyLoading feature.
   ],
   providers: [AuthService, UIService],
   bootstrap: [AppComponent],
