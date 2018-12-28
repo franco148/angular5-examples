@@ -8,7 +8,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 // import { AngularFireStorageModule } from '@angular/fire/storage';
 // import { AngularFireAuthModule } from '@angular/fire/auth';
-
+import { StoreModule } from '@ngrx/store';
 
 import { MaterialModule } from './material.module';
 import { AuthModule } from './auth/auth.module';
@@ -23,6 +23,7 @@ import { StopTrainingComponent } from './training/current-training/stop-training
 import { AuthService } from './auth/auth.service';
 import { environment } from '../environments/environment';
 import { UIService } from './shared/ui.service';
+import { appReducer } from './app.reducer';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { UIService } from './shared/ui.service';
     // AngularFireStorageModule // imports firebase/storage only needed for storage features
     AuthModule,
     // TrainingModule  // This is removed for having Lazy Loading module.
-    AngularFirestoreModule // Reading for fixing a dependency issue for implementing LazyLoading feature.
+    AngularFirestoreModule, // Reading for fixing a dependency issue for implementing LazyLoading feature.
+    StoreModule.forRoot({ui: appReducer})
   ],
   providers: [AuthService, UIService],
   bootstrap: [AppComponent],

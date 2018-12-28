@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Store } from '@ngrx/store';
 
 import { Subject } from 'rxjs';
 
@@ -8,6 +9,8 @@ import { User } from './user.model';
 import { AuthData } from './auth-data.model';
 import { TrainingService } from '../training/training.service';
 import { UIService } from '../shared/ui.service';
+import * as fromApp from '../app.reducer';
+
 
 // The following decorator allows us to make the service injectable.
 @Injectable({
@@ -25,7 +28,8 @@ export class AuthService {
   constructor(private router: Router,
               private afAuth: AngularFireAuth,
               private trainingService: TrainingService,
-              private uiService: UIService) { }
+              private uiService: UIService,
+              private store: Store<{ui: fromApp.State}>) { }
 
   initAuthListener() {
     this.afAuth.authState.subscribe(user => {
@@ -48,19 +52,22 @@ export class AuthService {
     //   email: authData.email,
     //   userId: Math.round(Math.random() * 10000).toString()
     // };
-
-    this.uiService.loadingStateChanged.next(true);
+   
+    // this.uiService.loadingStateChanged.next(true);
+    this.store.dispatch({type: 'START_LOADING'});
 
     // Replace previous call with AngularFire approach.
     this.afAuth.auth.createUserWithEmailAndPassword(
       authData.email,
       authData.password
     ).then(result => {
-      this.uiService.loadingStateChanged.next(false);
+      this.store.dispatch({type: 'STOP_LOADING'});
+      // this.uiService.loadingStateChanged.next(false);
       // The following is replaced by authListener
       // this.authSuccessfully();
     }).catch(error => {
-      this.uiService.loadingStateChanged.next(false);
+      // this.uiService.loadingStateChanged.next(false);
+      this.store.dispatch({type: 'STOP_LOADING'});
       // console.log(error);
       // this.snackBar.open(error.message, null, {
       //   duration: 3000
@@ -79,17 +86,23 @@ export class AuthService {
     //   userId: Math.round(Math.random() * 10000).toString()
     // };
 
-    this.uiService.loadingStateChanged.next(true);
+    // this.uiService.loadingStateChanged.next(true);
+    this.store.dispatch({type: 'START_LOADING'});
+
     // Replace previous call with AngularFire approach.
     this.afAuth.auth.signInWithEmailAndPassword(
       authData.email,
       authData.password
     ).then(result => {
-      this.uiService.loadingStateChanged.next(false);
+      // this.uiService.loadingStateChanged.next(false);
+      this.store.dispatch({type: 'STOP_LOADING'});
+
       // The following is replaced by authListener
       // this.authSuccessfully();
     }).catch(error => {
-      this.uiService.loadingStateChanged.next(false);
+      // this.uiService.loadingStateChanged.next(false);
+      this.store.dispatch({type: 'STOP_LOADING'});
+
       // console.log(error);
       // this.snackBar.open(error.message, null, {
       //   duration: 3000
