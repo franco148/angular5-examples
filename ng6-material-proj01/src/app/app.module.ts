@@ -23,7 +23,8 @@ import { StopTrainingComponent } from './training/current-training/stop-training
 import { AuthService } from './auth/auth.service';
 import { environment } from '../environments/environment';
 import { UIService } from './shared/ui.service';
-import { appReducer } from './app.reducer';
+// import { appReducer } from './app.reducer';
+import { reducers } from './app.reducer';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { appReducer } from './app.reducer';
     AuthModule,
     // TrainingModule  // This is removed for having Lazy Loading module.
     AngularFirestoreModule, // Reading for fixing a dependency issue for implementing LazyLoading feature.
-    StoreModule.forRoot({ui: appReducer})
+    // StoreModule.forRoot({ui: appReducer})
+    StoreModule.forRoot(reducers)
   ],
   providers: [AuthService, UIService],
   bootstrap: [AppComponent],

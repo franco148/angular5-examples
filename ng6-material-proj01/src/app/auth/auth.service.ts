@@ -9,7 +9,9 @@ import { User } from './user.model';
 import { AuthData } from './auth-data.model';
 import { TrainingService } from '../training/training.service';
 import { UIService } from '../shared/ui.service';
-import * as fromApp from '../app.reducer';
+import * as fromRoot from '../app.reducer';
+import * as UI from '../shared/ui.actions';
+
 
 
 // The following decorator allows us to make the service injectable.
@@ -29,7 +31,7 @@ export class AuthService {
               private afAuth: AngularFireAuth,
               private trainingService: TrainingService,
               private uiService: UIService,
-              private store: Store<{ui: fromApp.State}>) { }
+              private store: Store<{ui: fromRoot.State}>) { }
 
   initAuthListener() {
     this.afAuth.authState.subscribe(user => {
@@ -54,17 +56,20 @@ export class AuthService {
     // };
 
     // this.uiService.loadingStateChanged.next(true);
-    this.store.dispatch({type: fromApp.LoadingStates.START});
+    // this.store.dispatch({type: fromApp.LoadingStates.START});
+    this.store.dispatch(new UI.StartLoading());
 
     // Replace previous call with AngularFire approach.
     this.afAuth.auth.createUserWithEmailAndPassword(
       authData.email,
       authData.password
     ).then(result => {
-      this.store.dispatch({type: fromApp.LoadingStates.STOP});
+      // this.store.dispatch({type: fromApp.LoadingStates.STOP});
+      this.store.dispatch(new UI.StopLoading());
     }).catch(error => {
       // this.uiService.loadingStateChanged.next(false);
-      this.store.dispatch({type: fromApp.LoadingStates.STOP});
+      // this.store.dispatch({type: fromApp.LoadingStates.STOP});
+      this.store.dispatch(new UI.StopLoading());
       // Replaced with a externalized snackbar
       this.uiService.showSnackbar(error.message, null, 3000);
     });
@@ -75,7 +80,8 @@ export class AuthService {
   login(authData: AuthData) {
 
     // this.uiService.loadingStateChanged.next(true);
-    this.store.dispatch({type: fromApp.LoadingStates.START});
+    // this.store.dispatch({type: fromApp.LoadingStates.START});
+    this.store.dispatch(new UI.StartLoading());
 
     // Replace previous call with AngularFire approach.
     this.afAuth.auth.signInWithEmailAndPassword(
@@ -83,10 +89,12 @@ export class AuthService {
       authData.password
     ).then(result => {
       // this.uiService.loadingStateChanged.next(false);
-      this.store.dispatch({type: fromApp.LoadingStates.STOP});
+      // this.store.dispatch({type: fromApp.LoadingStates.STOP});
+      this.store.dispatch(new UI.StopLoading());
     }).catch(error => {
       // this.uiService.loadingStateChanged.next(false);
-      this.store.dispatch({type: fromApp.LoadingStates.STOP});
+      // this.store.dispatch({type: fromApp.LoadingStates.STOP});
+      this.store.dispatch(new UI.StopLoading());
 
       // Replaced with a externalized snackbar
       this.uiService.showSnackbar(error.message, null, 3000);
