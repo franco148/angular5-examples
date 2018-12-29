@@ -62,16 +62,9 @@ export class AuthService {
       authData.password
     ).then(result => {
       this.store.dispatch({type: fromApp.LoadingStates.STOP});
-      // this.uiService.loadingStateChanged.next(false);
-      // The following is replaced by authListener
-      // this.authSuccessfully();
     }).catch(error => {
       // this.uiService.loadingStateChanged.next(false);
       this.store.dispatch({type: fromApp.LoadingStates.STOP});
-      // console.log(error);
-      // this.snackBar.open(error.message, null, {
-      //   duration: 3000
-      // });
       // Replaced with a externalized snackbar
       this.uiService.showSnackbar(error.message, null, 3000);
     });
@@ -80,11 +73,6 @@ export class AuthService {
   }
 
   login(authData: AuthData) {
-    // For now we are not calling a sevice. So information will be dummy information.
-    // this.user = {
-    //   email: authData.email,
-    //   userId: Math.round(Math.random() * 10000).toString()
-    // };
 
     // this.uiService.loadingStateChanged.next(true);
     this.store.dispatch({type: fromApp.LoadingStates.START});
@@ -96,50 +84,24 @@ export class AuthService {
     ).then(result => {
       // this.uiService.loadingStateChanged.next(false);
       this.store.dispatch({type: fromApp.LoadingStates.STOP});
-
-      // The following is replaced by authListener
-      // this.authSuccessfully();
     }).catch(error => {
       // this.uiService.loadingStateChanged.next(false);
       this.store.dispatch({type: fromApp.LoadingStates.STOP});
 
-      // console.log(error);
-      // this.snackBar.open(error.message, null, {
-      //   duration: 3000
-      // });
       // Replaced with a externalized snackbar
       this.uiService.showSnackbar(error.message, null, 3000);
     });
 
-    // this.authSuccessfully();
   }
 
   logout() {
     // this.user = null;
     this.afAuth.auth.signOut();
-
-    // this.trainingService.cancelSubscriptions();
-    // this.isAuthenticated = false;
-    // this.authChange.next(false);
-    // this.router.navigate(['/login']);
   }
-
-  // getUser() {
-  //   // But if we return like the following, any change outside it is going to take effect in local information.
-  //   // For avoiding that we need to return a copy of it.
-  //   // return this.user;
-
-  //   return {...this.user};
-  // }
 
   isAuth() {
     // return this.user != null;
     return this.isAuthenticated;
   }
 
-  private authSuccessfully() {
-    // this.isAuthenticated = true;
-    // this.authChange.next(true);
-    // this.router.navigate(['/training']);
-  }
 }
