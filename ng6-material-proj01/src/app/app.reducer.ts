@@ -5,11 +5,11 @@ export interface State {
 
 const initialState: State = {
     isLoading: false
-}
+};
 
 export function appReducer(state = initialState, action) {
     // Actions must have an action property
-    switch(action.type) {
+    switch (action.type) {
         case 'START_LOADING':
             return {
                 isLoading: true

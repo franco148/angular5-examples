@@ -20,12 +20,15 @@ export class LoginComponent implements OnInit, OnDestroy {
   loginForm: FormGroup;
   // isLoading = false;
   isLoading$: Observable<boolean>;
-  private loadingSubs: Subscription;
+  // private loadingSubs: Subscription;
 
   constructor(private authService: AuthService, private uiService: UIService, private store: Store<{ui: fromApp.State}>) { }
 
   ngOnInit() {
-    this.isLoading$ = this.store.pipe(map(state => state.ui.isLoading));
+    this.isLoading$ = this.store.pipe(map(state => {
+      console.log(state);
+      return state.ui.isLoading;
+    }));
 
     // this.loadingSubs = this.uiService.loadingStateChanged.subscribe(isLoading => {
     //   this.isLoading = isLoading;
@@ -45,8 +48,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.loadingSubs) {
-      this.loadingSubs.unsubscribe();
-    }
+    // if (this.loadingSubs) {
+    //   this.loadingSubs.unsubscribe();
+    // }
   }
 }

@@ -52,7 +52,7 @@ export class AuthService {
     //   email: authData.email,
     //   userId: Math.round(Math.random() * 10000).toString()
     // };
-   
+
     // this.uiService.loadingStateChanged.next(true);
     this.store.dispatch({type: 'START_LOADING'});
 
