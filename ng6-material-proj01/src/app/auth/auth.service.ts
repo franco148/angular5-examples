@@ -54,20 +54,20 @@ export class AuthService {
     // };
 
     // this.uiService.loadingStateChanged.next(true);
-    this.store.dispatch({type: 'START_LOADING'});
+    this.store.dispatch({type: fromApp.LoadingStates.START});
 
     // Replace previous call with AngularFire approach.
     this.afAuth.auth.createUserWithEmailAndPassword(
       authData.email,
       authData.password
     ).then(result => {
-      this.store.dispatch({type: 'STOP_LOADING'});
+      this.store.dispatch({type: fromApp.LoadingStates.STOP});
       // this.uiService.loadingStateChanged.next(false);
       // The following is replaced by authListener
       // this.authSuccessfully();
     }).catch(error => {
       // this.uiService.loadingStateChanged.next(false);
-      this.store.dispatch({type: 'STOP_LOADING'});
+      this.store.dispatch({type: fromApp.LoadingStates.STOP});
       // console.log(error);
       // this.snackBar.open(error.message, null, {
       //   duration: 3000
@@ -87,7 +87,7 @@ export class AuthService {
     // };
 
     // this.uiService.loadingStateChanged.next(true);
-    this.store.dispatch({type: 'START_LOADING'});
+    this.store.dispatch({type: fromApp.LoadingStates.START});
 
     // Replace previous call with AngularFire approach.
     this.afAuth.auth.signInWithEmailAndPassword(
@@ -95,13 +95,13 @@ export class AuthService {
       authData.password
     ).then(result => {
       // this.uiService.loadingStateChanged.next(false);
-      this.store.dispatch({type: 'STOP_LOADING'});
+      this.store.dispatch({type: fromApp.LoadingStates.STOP});
 
       // The following is replaced by authListener
       // this.authSuccessfully();
     }).catch(error => {
       // this.uiService.loadingStateChanged.next(false);
-      this.store.dispatch({type: 'STOP_LOADING'});
+      this.store.dispatch({type: fromApp.LoadingStates.STOP});
 
       // console.log(error);
       // this.snackBar.open(error.message, null, {

@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isLoading$ = this.store.pipe(map(state => {
-      console.log(state);
       return state.ui.isLoading;
     }));
 
