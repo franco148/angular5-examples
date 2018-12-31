@@ -111,5 +111,4 @@ export class AuthService {
     // return this.user != null;
     return this.isAuthenticated;
   }
-
 }
