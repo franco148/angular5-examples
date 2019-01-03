@@ -11,6 +11,8 @@ import { TrainingService } from '../training/training.service';
 import { UIService } from '../shared/ui.service';
 import * as fromRoot from '../app.reducer';
 import * as UI from '../shared/ui.actions';
+import * as Auth from './auth.actions';
+
 
 
 
@@ -20,7 +22,7 @@ import * as UI from '../shared/ui.actions';
 })
 export class AuthService {
 
-  authChange = new Subject<boolean>();
+  // authChange = new Subject<boolean>();
   // private user: User;
   private isAuthenticated = false;
 
@@ -36,13 +38,15 @@ export class AuthService {
   initAuthListener() {
     this.afAuth.authState.subscribe(user => {
       if (user) {
-        this.isAuthenticated = true;
-        this.authChange.next(true);
+        // this.isAuthenticated = true;
+        this.store.dispatch(new Auth.SetAuthenticated());
+        // this.authChange.next(true);
         this.router.navigate(['/training']);
       } else {
         this.trainingService.cancelSubscriptions();
-        this.isAuthenticated = false;
-        this.authChange.next(false);
+        // this.isAuthenticated = false;
+        this.store.dispatch(new Auth.SetUnauthenticated());
+        // this.authChange.next(false);
         this.router.navigate(['/login']);
       }
     });
@@ -109,6 +113,6 @@ export class AuthService {
 
   isAuth() {
     // return this.user != null;
-    return this.isAuthenticated;
+    // return this.isAuthenticated;
   }
 }
