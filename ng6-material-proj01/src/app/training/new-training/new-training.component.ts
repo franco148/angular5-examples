@@ -30,37 +30,17 @@ export class NewTrainingComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    // this.exercises = this.trainingService.getAvailableExercises();
-    // this.db.collection('availableExercises').valueChanges().subscribe(result => {
-    //   console.log(result);
-    // });
-
-    // First approach, this does not bring ID information from firestore
-    // this.exercises = this.db.collection('availableExercises').valueChanges();
-
-    // The following gets the metadata.
-    // this.exercises = this.db.collection('availableExercises').snapshotChanges()
-    // .pipe(map(docArray => {
-    //   return docArray.map(doc => {
-    //     return {
-    //       id: doc.payload.doc.id,
-    //       name: doc.payload.doc.data().name,
-    //       duration: doc.payload.doc.data().duration,
-    //       calories: doc.payload.doc.data().calories
-    //     }
-    //   })
-    // }));
-
+    this.isLoading$ = this.store.select(fromRoot.getIsLoading);
     this.exerciseSubscription = this.trainingService.exercisesChanged.subscribe(exercises => {
       this.exercises = exercises;
-      this.isLoading = false;
+      // this.isLoading = false;
     });
     // this.trainingService.fetchAvailableExercises();
     this.fetchExercises();
   }
 
   fetchExercises() {
-    this.isLoading = true;
+    // this.isLoading = true;
     this.trainingService.fetchAvailableExercises();
   }
 
