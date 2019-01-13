@@ -1,10 +1,8 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 import { TrainingService } from '../training.service';
 import { Exercise } from '../exercise.model';
@@ -18,37 +16,24 @@ import * as fromRoot from '../../app.reducer';
 })
 export class NewTrainingComponent implements OnInit {
 
-  // @Output() trainingStart = new EventEmitter<void>();
-  // exercises: Exercise[] = [];
-  // exercises: Observable<Exercise[]>;
-  // exerciseSubscription: Subscription;
-  // isLoading = false;
   exercises$: Observable<Exercise[]>;
   isLoading$: Observable<boolean>;
 
   constructor(public trainingService: TrainingService,
-              private db: AngularFirestore,
               private store: Store<fromTraining.State>) {
   }
 
   ngOnInit() {
     this.isLoading$ = this.store.select(fromRoot.getIsLoading);
-    // this.exerciseSubscription = this.trainingService.exercisesChanged.subscribe(exercises => {
-    //   this.exercises = exercises;
-    //   // this.isLoading = false;
-    // });
-    // this.trainingService.fetchAvailableExercises();
     this.exercises$ = this.store.select(fromTraining.getAvailableExercises);
     this.fetchExercises();
   }
 
   fetchExercises() {
-    // this.isLoading = true;
     this.trainingService.fetchAvailableExercises();
   }
 
   onStartTraining(form: NgForm) {
-    // this.trainingStart.emit();
     this.trainingService.startExercise(form.value.training);
   }
 
