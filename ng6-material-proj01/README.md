@@ -28,4 +28,14 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 
 ## For Production
+
+###### Deploying the project in Firebase Hosting
 ng build --prod
+- ```$ npm install -g firebase-tools```
+- ```$ firebase login```
+- ```$ firebase init```
+- ```$ firebase deploy```
+
+Project Console: https://console.firebase.google.com/project/ng-fitness-tracker-fb6fc/overview
+Hosting URL: https://ng-fitness-tracker-fb6fc.firebaseapp.com
+
