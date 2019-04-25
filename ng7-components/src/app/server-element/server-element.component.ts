@@ -10,7 +10,9 @@ import {
   AfterContentChecked,
   AfterViewInit,
   AfterViewChecked,
-  OnDestroy
+  OnDestroy,
+  ViewChild,
+  ElementRef
 } from '@angular/core';
 
 @Component({
@@ -35,6 +37,7 @@ export class ServerElementComponent implements OnInit,
   // If input does not have a parameter, it will take the same name of the variable.
   @Input('srvElement') element: { type: string, name: string, content: string };
   @Input() name: string;
+  @ViewChild('heading') header: ElementRef;
 
   constructor() { 
     console.log('Constructor called!');
@@ -47,6 +50,7 @@ export class ServerElementComponent implements OnInit,
 
   ngOnInit() {
     console.log('ngOnInit called!');
+    console.log('TextContent', this.header.nativeElement.textContent);
   }
 
   ngDoCheck(): void {
@@ -66,6 +70,7 @@ export class ServerElementComponent implements OnInit,
 
   ngAfterViewInit() {
     console.log('ngAfterViewInit called!');
+    console.log('TextContent', this.header.nativeElement.textContent);
   }
 
   ngAfterViewChecked() {
