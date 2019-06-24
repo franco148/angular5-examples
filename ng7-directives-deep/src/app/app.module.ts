@@ -5,10 +5,14 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BasicHighlightComponent } from './basic-highlight/basic-highlight.component';
+import { BetterHighlightComponent } from './better-highlight/better-highlight.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BasicHighlightComponent,
+    BetterHighlightComponent
   ],
   imports: [
     BrowserModule,
