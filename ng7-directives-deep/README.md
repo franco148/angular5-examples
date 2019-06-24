@@ -25,3 +25,22 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Tutorial
+
+##### Attribute vs Structural Directives
+###### Attribute Directives: 
+- Look like an normal HTML attribute (Possibly with databinding or event binding)
+- Only affect/change the element they are added to.
+###### Structural Directives: 
+- Look like a normal HTML attribute but have a leading * (for desugaring)
+- Affect a whole are in the DOM (elements get added/removed)
+
+
+
+
+
+
+
+
+
