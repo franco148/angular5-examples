@@ -20,7 +20,6 @@ export class RecipeListComponent implements OnInit {
   }
 
   onRecipeSelected(recipe: Recipe) {
-    console.log('clicked on RecipeLIstComponent');
     this.recipeWasSelected.emit(recipe);
   }
 
