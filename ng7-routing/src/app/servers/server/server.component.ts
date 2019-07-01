@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServerComponent implements OnInit {
 
-  constructor() { }
+  server: {id: number, name: string, status: string};
+
+  // constructor(private serversService: ServersService) { }
 
   ngOnInit() {
-  }
+    // this.server = this.serversService.getServer(1);
+  } 
 
 }
