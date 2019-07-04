@@ -9,6 +9,7 @@ import { ServerComponent } from './servers/server/server.component';
 import { EditServerComponent } from './servers/edit-server/edit-server.component';
 import { UsersComponent } from './users/users.component';
 import { UserComponent } from './users/user/user.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UserComponent } from './users/user/user.component';
     ServerComponent,
     EditServerComponent,
     UsersComponent,
-    UserComponent
+    UserComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
