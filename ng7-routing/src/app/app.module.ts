@@ -13,6 +13,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthService } from './auth.service';
 import { ServersService } from './servers/servers.service';
+import { CanDeactivateGuard } from './servers/edit-server/can-deactivate-guard.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { ServersService } from './servers/servers.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [AuthService, ServersService],
+  providers: [AuthService, ServersService, CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
