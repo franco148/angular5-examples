@@ -12,6 +12,7 @@ import { UserComponent } from './users/user/user.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthService } from './auth.service';
+import { ServersService } from './servers/servers.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { AuthService } from './auth.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, ServersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
