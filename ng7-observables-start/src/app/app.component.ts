@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { UserService } from './user.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ng7-observables-start';
+  userActivated = false;
+  private activatedSub: Subscription;
+
+  constructor(private userService: UserService) {
+  } 
+
+  ngOnInit() {
+    this.activatedSub = this.userService.activatedEmitter.subscribe(didActivate => {
+      this.userActivated = didActivate;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.activatedSub.unsubscribe();
+  } 
 }
