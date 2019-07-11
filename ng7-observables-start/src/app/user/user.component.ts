@@ -13,7 +13,11 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
+    // Why we do not unsubscribe the subscription here?
+    // R: Angular does that for you. For the observables provided by Angular
+    // like params but also any other observable you may use. All them are managed by angular.
     this.route.params.subscribe((params: Params) => {
+      console.log('User Component params observer: ', params.id);
       this.id = +params.id;
     });
   } 
