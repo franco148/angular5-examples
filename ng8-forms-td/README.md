@@ -25,3 +25,10 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Further help
+This approach only needs the <form> tag, so angular can recognize the form. But angular will not detech the inputs automatically, and the reason for this is that whilst you could argue that it should be able to scan your HTML code and detect that yo have the controls in the DOM.
+
+So we still need to register our controls manually, we need to tell angular. Hey! within that form element what should be an actual control of my form?
+
+Go to app.component.html to see what we need to do.
