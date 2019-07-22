@@ -35,10 +35,21 @@ export class AppComponent implements OnInit {
 
     // this.signupForm.valueChanges.subscribe((value)=>console.log(value));
     // this.signupForm.statusChanges.subscribe((value) => console.log(value));
+
+    // this.signupForm.setValue({
+    //   // And add the structure of your json
+    // });
+
+    // this.signupForm.patchValue({
+    //   // Update only the required one
+    // });
   }
 
   onSubmit() {
     console.log(this.signupForm);
+    // this.signupForm.reset(); // For reseting the data once clicked submit button.
+    // Do not want to clear the radio buttons? Keep in mind: You can pass an object
+    // to reset() to reset to specific values!
   }
 
   onAddHobby() {
