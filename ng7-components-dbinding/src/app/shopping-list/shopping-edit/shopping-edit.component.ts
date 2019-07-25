@@ -18,7 +18,8 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   // ingredientAdded = new EventEmitter<{name: string, amount: number}>();
   // @Output() ingredientAdded = new EventEmitter<Ingredient>();
 
-  @ViewChild('f', { static: false }) slForm: NgForm;
+  // @ViewChild('f', { static: false }) slForm: NgForm; // This works in angular 8
+  @ViewChild('f') slForm: NgForm;
   subscription: Subscription;
   editMode = false;
   editedItemIndex: number;
