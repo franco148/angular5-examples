@@ -7,7 +7,9 @@
                       {{ server.status }}
                     </span>
                     <!-- When a pipe has more than a parameter, we can send it after another : -->
-                    <strong>{{ server.name }}</strong> | {{ server.instanceType | uppercase }} | {{ server.started | date: 'fullDate' }}
+                    <!-- When we need to use more than one pipe, we just need to apply the new one with | symbol, but
+                    we need to take into account that the order matters -->
+                    <strong>{{ server.name | shorten }}</strong> | {{ server.instanceType | uppercase }} | {{ server.started | date: 'fullDate' }}
                 </li>
             </ul>
         </div>
