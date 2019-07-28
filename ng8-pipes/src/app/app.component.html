@@ -6,7 +6,8 @@
                     <span class="badge">
                       {{ server.status }}
                     </span>
-                    <strong>{{ server.name }}</strong> | {{ server.instanceType | uppercase }} | {{ server.started | date }}
+                    <!-- When a pipe has more than a parameter, we can send it after another : -->
+                    <strong>{{ server.name }}</strong> | {{ server.instanceType | uppercase }} | {{ server.started | date: 'fullDate' }}
                 </li>
             </ul>
         </div>
