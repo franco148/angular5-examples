@@ -18,7 +18,7 @@
                     <!-- When we need to use more than one pipe, we just need to apply the new one with | symbol, but
                     we need to take into account that the order matters -->
                     <strong>{{ server.name | shorten:10 }}</strong> |
-                        {{ server.instanceType | uppercase }} | 
+                        {{ server.instanceType | uppercase | reverse }} | 
                         {{ server.started | date: 'fullDate' }}
                 </li>
             </ul>
