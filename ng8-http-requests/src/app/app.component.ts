@@ -13,13 +13,15 @@ export class AppComponent {
 
   constructor(private http: HttpClient) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.fetchPosts();
+  }
 
   onCreatePost(postData: { title: string; content: string }) {
     // Send Http request
     this.http
       .post(
-        'https://ng-complete-guide-c56d3.firebaseio.com/posts.json',
+        'https://ngheroesfirebase.firebaseio.com/posts.json',
         postData
       )
       .subscribe(responseData => {
@@ -29,9 +31,17 @@ export class AppComponent {
 
   onFetchPosts() {
     // Send Http request
+    this.fetchPosts();
   }
 
   onClearPosts() {
     // Send Http request
+  }
+
+  private fetchPosts() {
+    this.http.get('https://ngheroesfirebase.firebaseio.com/posts.json')
+             .subscribe(posts => {
+                console.log(posts);
+             });
   }
 }
