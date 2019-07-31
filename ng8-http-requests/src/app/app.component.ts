@@ -13,6 +13,7 @@ import { Post } from './post.model';
 export class AppComponent {
   
   loadedPosts = [];
+  isFetching = false;
 
   constructor(private http: HttpClient) {}
 
@@ -57,6 +58,7 @@ export class AppComponent {
     //             console.log(posts);
     //          });
 
+    this.isFetching = true;
     // Second approach
     this.http.get<{ [key: string]: Post }>('https://ngheroesfirebase.firebaseio.com/posts.json')
              .pipe(map(response => {
@@ -70,6 +72,7 @@ export class AppComponent {
              }))
              .subscribe(posts => {
                 console.log(posts);
+                this.isFetching = false;
                 this.loadedPosts = posts;
              });
   }
