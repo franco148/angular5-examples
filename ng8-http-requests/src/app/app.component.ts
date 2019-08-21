@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Post } from './post.model';
+import { PostService } from './posts.service';
 
 
 
@@ -15,34 +16,31 @@ export class AppComponent {
   loadedPosts = [];
   isFetching = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private postService: PostService) {}
 
   ngOnInit() {
-    this.fetchPosts();
+    // this.fetchPosts();
+    this.postService.fetchPosts();
   }
 
   onCreatePost(postData: { title: string; content: string }) {
     // Send Http request
-    this.http
-      .post<{ name: string }>(
-        'https://ngheroesfirebase.firebaseio.com/posts.json',
-        postData
-      )
-      .subscribe(responseData => {
-        console.log(responseData);
-      });
+    // --- Moved the request implementation to a service ---
+    this.postService.createAndStorePost(postData.title, postData.content);
   }
 
   onFetchPosts() {
     // Send Http request
-    this.fetchPosts();
+    // this.fetchPosts();
+
+    this.postService.fetchPosts();
   }
 
   onClearPosts() {
     // Send Http request
   }
 
-  private fetchPosts() {
+  // private fetchPosts() {
     // First approach for using Types with HttpClient
     // this.http.get('https://ngheroesfirebase.firebaseio.com/posts.json')
     //          .pipe(map((response: { [key: string]: Post }) => {
@@ -58,22 +56,8 @@ export class AppComponent {
     //             console.log(posts);
     //          });
 
-    this.isFetching = true;
-    // Second approach
-    this.http.get<{ [key: string]: Post }>('https://ngheroesfirebase.firebaseio.com/posts.json')
-             .pipe(map(response => {
-               const postsArray: Post[] = [];
-               for (const value in response) {
-                 if (response.hasOwnProperty(value)) {
-                  postsArray.push({...response[value], id: value});
-                 }
-               }
-               return postsArray;
-             }))
-             .subscribe(posts => {
-                console.log(posts);
-                this.isFetching = false;
-                this.loadedPosts = posts;
-             });
-  }
+    // this.isFetching = true;
+    // Second approach --- moved to a service ---
+    
+  // }
 }
