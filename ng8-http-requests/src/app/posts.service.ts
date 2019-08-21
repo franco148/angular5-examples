@@ -36,4 +36,8 @@ export class PostService {
             //     console.log(posts);
             //  });
     }
+
+    clearPosts() {
+        return this.http.delete('https://ngheroesfirebase.firebaseio.com/posts.json');
+    }
 }

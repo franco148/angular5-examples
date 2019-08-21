@@ -46,6 +46,9 @@ export class AppComponent {
 
   onClearPosts() {
     // Send Http request
+    this.postService.clearPosts().subscribe(() => {
+      this.loadedPosts = [];
+    });
   }
 
   // private fetchPosts() {
