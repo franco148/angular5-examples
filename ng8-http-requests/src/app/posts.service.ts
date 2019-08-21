@@ -22,18 +22,18 @@ export class PostService {
     }
 
     fetchPosts() {
-        this.http.get<{ [key: string]: Post }>('https://ngheroesfirebase.firebaseio.com/posts.json')
-             .pipe(map(response => {
-               const postsArray: Post[] = [];
-               for (const value in response) {
-                 if (response.hasOwnProperty(value)) {
-                  postsArray.push({...response[value], id: value});
-                 }
-               }
-               return postsArray;
-             }))
-             .subscribe(posts => {
-                console.log(posts);
-             });
+        return this.http.get<{ [key: string]: Post }>('https://ngheroesfirebase.firebaseio.com/posts.json')
+                .pipe(map(response => {
+                const postsArray: Post[] = [];
+                for (const value in response) {
+                    if (response.hasOwnProperty(value)) {
+                    postsArray.push({...response[value], id: value});
+                    }
+                }
+                return postsArray;
+                }));
+            //  .subscribe(posts => {
+            //     console.log(posts);
+            //  });
     }
 }
