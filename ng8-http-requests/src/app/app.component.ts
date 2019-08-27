@@ -15,6 +15,7 @@ export class AppComponent {
   
   loadedPosts = [];
   isFetching = false;
+  error = null;
 
   constructor(private http: HttpClient, private postService: PostService) {}
 
@@ -24,6 +25,9 @@ export class AppComponent {
     this.postService.fetchPosts().subscribe(posts => {
       this.isFetching = false;
       this.loadedPosts = posts;
+    }, error => {
+      this.isFetching = false;
+      this.error = error.message;
     });
   }
 
@@ -41,6 +45,10 @@ export class AppComponent {
     this.postService.fetchPosts().subscribe(posts => {
       this.isFetching = false;
       this.loadedPosts = posts;
+    }, error => {
+      this.isFetching = false;
+      console.log(error);
+      this.error = error.message;
     });
   }
 
