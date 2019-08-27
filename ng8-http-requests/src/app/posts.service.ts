@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { map } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { Subject, throwError } from 'rxjs';
 
 import { Post } from './post.model';
 
@@ -30,7 +30,7 @@ export class PostService {
 
     fetchPosts() {
         return this.http.get<{ [key: string]: Post }>('https://ngheroesfirebase.firebaseio.com/posts.json')
-                .pipe(map(response => {
+            .pipe(map(response => {
                 const postsArray: Post[] = [];
                 for (const value in response) {
                     if (response.hasOwnProperty(value)) {
@@ -38,7 +38,12 @@ export class PostService {
                     }
                 }
                 return postsArray;
-                }));
+            }), catchError(errorResponse => {
+                // Send to analytics server
+                    console.log('Catching error with rxjs feature... ', errorResponse);
+                    return throwError(errorResponse);
+                })            
+            );
             //  .subscribe(posts => {
             //     console.log(posts);
             //  });
