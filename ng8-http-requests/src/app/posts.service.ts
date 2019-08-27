@@ -67,7 +67,8 @@ export class PostService {
 
     clearPosts() {
         return this.http.delete('https://ngheroesfirebase.firebaseio.com/posts.json', {
-            observe: 'events'
+            observe: 'events',
+            responseType: 'json' // text, blob 
         }).pipe(tap(event => {
             console.log(event);
             if (event.type === HttpEventType.Sent) {
