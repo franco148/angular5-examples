@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { map, catchError } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
@@ -29,10 +29,16 @@ export class PostService {
     }
 
     fetchPosts() {
+        // For multiple query params
+        let searchParams = new HttpParams();
+        searchParams = searchParams.append('print', 'pretty').append('custom', 'key');
+
         return this.http.get<{ [key: string]: Post }>(
                 'https://ngheroesfirebase.firebaseio.com/posts.json',
                 {
-                    headers: new HttpHeaders({'Custom-Header': 'Hello', 'My-Auth': 'Value'})
+                    headers: new HttpHeaders({'Custom-Header': 'Hello', 'My-Auth': 'Value'}),
+                    // params: new HttpParams().set('print', 'pretty')
+                    params: searchParams
                 }
             )
             .pipe(map(response => {
