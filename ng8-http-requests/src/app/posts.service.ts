@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpEventType } from '@angular/common/http';
 
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 import { Subject, throwError } from 'rxjs';
 
 import { Post } from './post.model';
@@ -16,10 +16,15 @@ export class PostService {
     createAndStorePost(title: string, content: string) {
         const postData: Post = { title: title, content: content };
 
+        // We can use some headers for responses, but they have some values for OBSERVE property
+        // body, response, events
         this.http
         .post<{ name: string }>(
             'https://ngheroesfirebase.firebaseio.com/posts.json',
-            postData
+            postData,
+            {
+                observe: 'response'
+            }
         )
         .subscribe(responseData => {
             console.log(responseData);
@@ -61,6 +66,17 @@ export class PostService {
     }
 
     clearPosts() {
-        return this.http.delete('https://ngheroesfirebase.firebaseio.com/posts.json');
+        return this.http.delete('https://ngheroesfirebase.firebaseio.com/posts.json', {
+            observe: 'events'
+        }).pipe(tap(event => {
+            console.log(event);
+            if (event.type === HttpEventType.Sent) {
+                //Do something...
+            }
+
+            if (event.type === HttpEventType.Response) {
+                console.log('Event Type: Response', event.body);
+            }
+        }));
     }
 }
