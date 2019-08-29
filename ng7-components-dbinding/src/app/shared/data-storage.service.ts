@@ -11,7 +11,6 @@ export class DataStorageService {
 
   storeRecipes() {
     const recipes = this.recipeService.getRecipes();
-    console.log('Storing receipes.....', recipes);
     this.http
       .put(
         'https://ngheroesfirebase.firebaseio.com/recipes.json',
@@ -28,10 +27,8 @@ export class DataStorageService {
       )
       .pipe(
         map(recipes => {
-          console.log('Here it arrives ', recipes);
           if (recipes) {
             return recipes.map(recipe => {
-              console.log('map ....');
               return {
                 ...recipe,
                 ingredients: recipe.ingredients ? recipe.ingredients : []
@@ -42,7 +39,6 @@ export class DataStorageService {
           return [];
         }),
         tap(recipes => {
-          console.log('tap ....', recipes);
           this.recipeService.setRecipes(recipes);
         })
       );
