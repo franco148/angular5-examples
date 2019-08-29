@@ -36,6 +36,7 @@ export class RecipeService {
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
     this.recipesChanged.next(this.recipes.slice());
+    console.log('after called changed...');
   } 
 
   getRecipes() {
@@ -51,7 +52,9 @@ export class RecipeService {
   }
 
   addRecipe(recipe: Recipe) {
+    console.log('pushed....');
     this.recipes.push(recipe);
+    console.log('total amount: ', this.recipes);
     this.recipesChanged.next(this.recipes.slice());
   }
 
