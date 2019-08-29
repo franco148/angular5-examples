@@ -28,13 +28,18 @@ export class DataStorageService {
       )
       .pipe(
         map(recipes => {
-          return recipes.map(recipe => {
-            console.log('map ....');
-            return {
-              ...recipe,
-              ingredients: recipe.ingredients ? recipe.ingredients : []
-            };
-          });
+          console.log('Here it arrives ', recipes);
+          if (recipes) {
+            return recipes.map(recipe => {
+              console.log('map ....');
+              return {
+                ...recipe,
+                ingredients: recipe.ingredients ? recipe.ingredients : []
+              };
+            });
+          }
+
+          return [];
         }),
         tap(recipes => {
           console.log('tap ....', recipes);
