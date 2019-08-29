@@ -5,8 +5,8 @@ import { RecipeService } from './recipe.service';
 @Component({
   selector: 'app-recipes',
   templateUrl: './recipes.component.html',
-  styleUrls: ['./recipes.component.css'],
-  providers: [RecipeService] 
+  styleUrls: ['./recipes.component.css']
+  // providers: [RecipeService] // This is when we do not need a singleton service. This will have a different instance.
 })
 export class RecipesComponent implements OnInit {
   // selectedRecipe: Recipe;

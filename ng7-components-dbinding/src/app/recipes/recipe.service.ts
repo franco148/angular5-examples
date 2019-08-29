@@ -5,7 +5,7 @@ import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/Ingredient.model';
 import { ShoppingListService } from 'app/shopping-list/shopping-list.service';
 
-@Injectable({providedIn: 'root'})
+@Injectable()
 export class RecipeService {
 
   // recipeSelected = new EventEmitter<Recipe>();
@@ -36,6 +36,7 @@ export class RecipeService {
   setRecipes(recipes: Recipe[]) {
     this.recipes = recipes;
     this.recipesChanged.next(this.recipes.slice());
+    console.log('-------------------------', this.recipes);
   } 
 
   getRecipes() {
