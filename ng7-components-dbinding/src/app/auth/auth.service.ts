@@ -15,14 +15,14 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  signup(email: string, password: string) {
+  signup(usrEmail: string, usrPassword: string) {
     // [API_KEY]
     return this.http
         .post<AuthResponseData>(
           'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]',
           {
-            email: email,
-            password: password,
+            email: usrEmail,
+            password: usrPassword,
             returnSecureToken: true
           }
         );
