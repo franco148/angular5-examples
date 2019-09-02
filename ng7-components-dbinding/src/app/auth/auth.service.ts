@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { catchError, tap } from 'rxjs/operators';
-import { throwError, Subject } from 'rxjs';
+import { throwError, Subject, BehaviorSubject } from 'rxjs';
 
 import { User } from './user.model';
 
@@ -19,7 +19,15 @@ export interface AuthResponseData {
 @Injectable({providedIn: 'root'})
 export class AuthService {
 
-  user = new Subject<User>();
+  // user = new Subject<User>();
+  
+  // The difference is that behavior subject also gives subscribers immediate access to the previously
+  // emitted value even if they have not subscribed at the point of time that value was emitted.
+  // That means we can get access to be currently active user even if we only subscribe after that
+  // user has been emitted. So this means when we fetch data and we need that token at this point of time,
+  // even if the user logged in before that point of time which will have been the case, we get access
+  // to that latest user.
+  user = new BehaviorSubject<User>(null);
 
   constructor(private http: HttpClient) {}
 
