@@ -31,32 +31,53 @@ export class DataStorageService {
     // however, it will not work, because we need to return an observable.
     // The solucion will be to use exhaustMap operator, it waits for the first observable
     // for the user observable to complete which will happen after we took the latest user.
-    return this.authService.user.pipe(
-      take(1),
-      exhaustMap(user => {
-        return this.http.get<Recipe[]>(
-          // 'https://ngheroesfirebase.firebaseio.com/recipes.json?auth='+token //We can add it manually. Or as follows.
-          'https://ngheroesfirebase.firebaseio.com/recipes.json?',
-          {
-            params: new HttpParams().set('auth', user.token)
-          }
-        );
-      }),
-      map(recipes => {
-        if (recipes) {
-          return recipes.map(recipe => {
-            return {
-              ...recipe,
-              ingredients: recipe.ingredients ? recipe.ingredients : []
-            };
-          });
-        }
+    // MOVED TO AN INTERCEPTOR
+    // return this.authService.user.pipe(
+    //   take(1),
+    //   exhaustMap(user => {
+    //     return this.http.get<Recipe[]>(
+    //       // 'https://ngheroesfirebase.firebaseio.com/recipes.json?auth='+token //We can add it manually. Or as follows.
+    //       'https://ngheroesfirebase.firebaseio.com/recipes.json?',
+    //       {
+    //         params: new HttpParams().set('auth', user.token)
+    //       }
+    //     );
+    //   }),
+    //   map(recipes => {
+    //     if (recipes) {
+    //       return recipes.map(recipe => {
+    //         return {
+    //           ...recipe,
+    //           ingredients: recipe.ingredients ? recipe.ingredients : []
+    //         };
+    //       });
+    //     }
 
-        return [];
-      }),
-      tap(recipes => {
-        this.recipeService.setRecipes(recipes);
-      })
-    );
+    //     return [];
+    //   }),
+    //   tap(recipes => {
+    //     this.recipeService.setRecipes(recipes);
+    //   })
+    // );
+
+    return this.http.get<Recipe[]>(
+          'https://ngheroesfirebase.firebaseio.com/recipes.json?'
+        ).pipe(
+          map(recipes => {
+            if (recipes) {
+              return recipes.map(recipe => {
+                return {
+                  ...recipe,
+                  ingredients: recipe.ingredients ? recipe.ingredients : []
+                };
+              });
+            }
+    
+            return [];
+          }),
+          tap(recipes => {
+            this.recipeService.setRecipes(recipes);
+          })
+        );
   }
 }
