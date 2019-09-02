@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, take } from 'rxjs/operators';
 
 import { AuthService } from './auth.service';
 
@@ -33,6 +33,7 @@ export class AuthGuard implements CanActivate {
 
         // SECOND APPROACH
         return this.authService.user.pipe(
+            take(1),
             map(user => {
                 const isAuth = !!user;
                 if (isAuth) {
