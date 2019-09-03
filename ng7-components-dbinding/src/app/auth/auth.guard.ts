@@ -1,6 +1,5 @@
-import { CanActivate } from '@angular/router/src/utils/preactivation';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, Router, UrlTree, CanActivate } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { map, tap, take } from 'rxjs/operators';
