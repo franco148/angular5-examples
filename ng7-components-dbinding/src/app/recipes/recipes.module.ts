@@ -10,6 +10,7 @@ import { RecipeItemComponent } from './recipe-list/recipe-item/recipe-item.compo
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RecipeStartComponent } from './recipe-start/recipe-start.component';
 import { RecipesRoutingModule } from './recipes-routing.module';
+import { SharedModule } from 'app/shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -25,10 +26,11 @@ import { RecipesRoutingModule } from './recipes-routing.module';
     // in BrowserModule, however it is not a good practice to have declared this module in many places,
     // So it can be used CommonModule.
     imports: [
+        // CommonModule, // Replaced by SharedModule
         RouterModule,
-        CommonModule,
         ReactiveFormsModule,
-        RecipesRoutingModule
+        RecipesRoutingModule,
+        SharedModule
     ],
     // exports: [
     //     RecipeDetailComponent,
