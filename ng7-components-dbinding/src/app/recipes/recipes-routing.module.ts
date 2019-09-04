@@ -8,9 +8,10 @@ import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipesResolverService } from './recipes-resolver.service';
 
+// For lazy loading our FEATURE MODULES need to bring its own routes
 const routes: Routes = [
     { 
-        path: 'recipes', 
+        path: '', 
         component: RecipesComponent,
         canActivate: [AuthGuard],
         children: [

@@ -12,6 +12,7 @@ import { RecipeStartComponent } from './recipe-start/recipe-start.component';
 import { RecipesRoutingModule } from './recipes-routing.module';
 import { SharedModule } from 'app/shared/shared.module';
 
+// For lazy loading our FEATURE MODULES need to bring its own routes
 @NgModule({
     declarations: [
         RecipeDetailComponent,
