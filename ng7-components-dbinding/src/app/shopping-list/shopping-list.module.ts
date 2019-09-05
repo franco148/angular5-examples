@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { ShoppingListComponent } from './shopping-list.component';
 import { ShoppingEditComponent } from './shopping-edit/shopping-edit.component';
 import { SharedModule } from 'app/shared/shared.module';
+import { ShoppingListRoutingModule } from './shopping-list-routing.module';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { SharedModule } from 'app/shared/shared.module';
         // ShoppingListRoutingModule // replaced by SharedModule
         // Or instead of having a separate RoutingModule here we can have
         // RouterModule.forChild([{pat: 'shopping-list', component: ShoppingListComponent}])
-        SharedModule
+        SharedModule,
+        ShoppingListRoutingModule
     ]
 })
 export class ShoppingListModule {}
