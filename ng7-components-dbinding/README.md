@@ -44,7 +44,15 @@ NgModule thing that we have in our app, like the app module or the app routing m
 The following command takes our angular application and now does not spin up a development server where you can see it but it actually builds your entire app into a few files which you can then deploy.
 - ng build --prod
 
-
+###### Firebase Hosting
+- npm install -g firebase-tools
+- firebase login
+- firebase init : In the root path of the project.
+- Do not use the default public directory! In this specific case will be: dist/ng7-components-dbinding
+- rewrite all urls to /index.html? choose y
+- File ... already exists. Overwrite? n
+- firebase deploy
+- When it finishes you will receive a link of your deployed app.
 
 
 
