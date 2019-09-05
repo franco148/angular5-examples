@@ -55,9 +55,19 @@
         </div>
         <div class="row">
           <div class="col-xs-12" formArrayName="ingredients">
+            <!-- For AoT compilation we will have the following error message: Property 'controls' does not exist on type 'AbstractControl'
+            because it does some other extra controls, and it is basically due to what we have in ngfor directive below. 
+            
+            Compiler basically does not understand that disk part here recipe form get ingredients gives us back a form array that has a controls
+            property, it does not know what we get back here.
+
+            The solution will be remove it from the template, and move it to the typescript code.
+
+            *ngFor="let ingredientCtrl of recipeForm.get('ingredients').controls; let i = index"
+            -->
             <div
               class="row"
-              *ngFor="let ingredientCtrl of recipeForm.get('ingredients').controls; let i = index"
+              *ngFor="let ingredientCtrl of ingredientsControls; let i = index"
               [formGroupName]="i"
               style="margin-top: 10px;">
               <div class="col-xs-8">

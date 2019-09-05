@@ -40,7 +40,9 @@ NgModule thing that we have in our app, like the app module or the app routing m
 - You can not use a feature/building block without including it in a module.
 
 
-###### Services & Modules
+###### Ahead of Time Compilation
+The following command takes our angular application and now does not spin up a development server where you can see it but it actually builds your entire app into a few files which you can then deploy.
+- ng build --prod
 
 
 
