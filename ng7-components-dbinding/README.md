@@ -38,3 +38,33 @@ NgModule thing that we have in our app, like the app module or the app routing m
 - An app requires at least one module (AppModule) but may be split into multiple modules.
 - Core Angular features are included in Angular modules (e.g. FormsModule) to load them only when needed.
 - You can not use a feature/building block without including it in a module.
+
+
+###### Services & Modules
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

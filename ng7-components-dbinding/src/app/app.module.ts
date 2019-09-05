@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 // import { ShoppingListModule } from './shopping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core.module';
+import { LoggingService } from './logging.service';
 // import { AuthModule } from './auth/auth.module';
 
 @NgModule({
@@ -51,5 +52,7 @@ import { CoreModule } from './core.module';
   // entryComponents: [
   //   AlertComponent
   // ] // Moved to SharedModule
+  
+  // providers: [LoggingService]
 })
 export class AppModule { }
