@@ -24,5 +24,7 @@ export function shoppingListReducer(state = initialState, action: slActions.AddI
                 ...state,
                 ingredients: [...state.ingredients, action.payload]
             };
+        default:
+            return state;
     }
 }
