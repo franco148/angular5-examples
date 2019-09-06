@@ -8,5 +8,7 @@ export class AddIngredient implements Action {
 
     // Important: 'PAYLOAD' is not a name you have to use! The action
     // interface only forces you to add a 'type' property!
-    payload: Ingredient;
+    // payload: Ingredient;
+
+    constructor(public payload: Ingredient) {}
 }
