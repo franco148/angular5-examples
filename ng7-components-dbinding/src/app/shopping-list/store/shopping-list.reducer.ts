@@ -12,7 +12,7 @@ const initialState = {
 };
 
 // Implementing the reducer that ngrx pattern indicates
-export function shoppingListReducer(state = initialState, action: slActions.AddIngredient) {
+export function shoppingListReducer(state = initialState, action: slActions.ShoppingListActions) {
     switch (action.type) {
         case slActions.ADD_INGREDIENT:
             // The following operation would be totally wrong because state changes with NgRx
@@ -23,6 +23,11 @@ export function shoppingListReducer(state = initialState, action: slActions.AddI
             return {
                 ...state,
                 ingredients: [...state.ingredients, action.payload]
+            };
+        case slActions.ADD_INGREDIENTS:
+            return {
+                ...state,
+                ingredients: [...state.ingredients, ...action.payload]
             };
         default:
             return state;
