@@ -53,6 +53,8 @@ The following command takes our angular application and now does not spin up a d
 - File ... already exists. Overwrite? n
 - firebase deploy
 - When it finishes you will receive a link of your deployed app.
+  - Project Console: https://console.firebase.google.com/project/ngheroesfirebase/overview
+  - Hosting URL: https://ngheroesfirebase.firebaseapp.com
 
 
 
