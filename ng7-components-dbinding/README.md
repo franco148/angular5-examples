@@ -57,9 +57,11 @@ The following command takes our angular application and now does not spin up a d
   - Hosting URL: https://ngheroesfirebase.firebaseapp.com
 
 
+###### NgRx
+NgRx is in the end just Angular's implementation of Redux. Now it comes with some differences or Angular specific things.
 
-
-
+- NgRx Steps
+  - npm install --save @ngrx/store
 
 
 
