@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { ShoppingListService } from './shopping-list/shopping-list.service';
+// import { ShoppingListService } from './shopping-list/shopping-list.service';
 import { RecipeService } from './recipes/recipe.service';
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 
@@ -10,7 +10,7 @@ import { AuthInterceptorService } from './auth/auth-interceptor.service';
 // a root level, you do not need to export them to make this happen
 @NgModule({
     providers: [
-        ShoppingListService, 
+        // ShoppingListService, 
         RecipeService,
         {
             provide: HTTP_INTERCEPTORS,
