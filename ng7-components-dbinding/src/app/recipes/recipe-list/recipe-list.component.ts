@@ -6,7 +6,7 @@ import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 import { Recipe } from '../recipe.model';
-import { RecipeService } from '../recipe.service';
+// import { RecipeService } from '../recipe.service';
 import * as fromApp from '../../store/app.reducer';
 
 @Component({
