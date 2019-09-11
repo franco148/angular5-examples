@@ -62,8 +62,13 @@ NgRx is in the end just Angular's implementation of Redux. Now it comes with som
 
 - NgRx Steps
   - npm install --save @ngrx/store
+  - npm install --save @ngrx/effects
+  - npm install --save @ngrx/router-store
 
 
+- Tools
+  - redux-devtools-extension
+  - npm install --save-dev @ngrx/store-devtools
 
 
 
