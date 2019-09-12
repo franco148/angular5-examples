@@ -71,6 +71,15 @@ NgRx is in the end just Angular's implementation of Redux. Now it comes with som
   - npm install --save-dev @ngrx/store-devtools
 
 
+###### Angular Universal
+
+- ng add @nguniversal/express-engine --clientProject <ProjectNameFromAngularJsonFile>
+- npm install --save @nguniversal/module-map-ngfactory-loader
+- npm run build:ssr
+- npm run serve:ssr
+
+Another approach for implementing server side render would be using nestjs framework (backend side framework)
+- ng add @nestjs/ng-universal
 
 
 
