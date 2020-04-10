@@ -2,6 +2,7 @@
 - npm install --save express
 - npm install cors
 - npm install body-parser
+- npm install @types/express --save-dev # Suggested by node
 
 
 ### Extra tools
