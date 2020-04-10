@@ -11,3 +11,12 @@ For using typescript in node js we would need to configure it. So for that execu
 Other required commands:
 - tsc -w
 - 
+
+### Important Git Commands
+- List the repository tags: `git tag`
+- Create a tag: `git tag -a <version> -m "message"`
+- Push the tag: `git push --tags`
+
+
+
+
