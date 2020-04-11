@@ -8,7 +8,7 @@ export class ChatService {
 
   constructor(private wsService: WebsocketService) { }
 
-  sendMessage(message: string) {
+  public sendMessage(message: string) {
     const payload = {
       from: 'Franco Arratia',
       body: message
