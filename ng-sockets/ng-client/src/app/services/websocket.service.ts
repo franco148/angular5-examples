@@ -28,4 +28,8 @@ export class WebsocketService {
     // emit(EVENTO, payload, callback)
     this.socket.emit(event, payload, callback);
   }
+
+  listen(event: string) {
+    return this.socket.fromEvent(event);
+  }
 }
