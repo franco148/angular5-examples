@@ -5,13 +5,15 @@ import http from 'http';
 
 export default class Server {
 
+    private static _instance: Server;
+
     app: express.Application;
     port: number;
 
     io: socketIO.Server;
     private httpServer: http.Server;
 
-    constructor() {
+    private constructor() {
         console.log('Initializing the server...');
         this.app = express();
         this.port = SERVER_PORT
@@ -20,6 +22,10 @@ export default class Server {
         this.io = socketIO(this.httpServer);
 
         this.listenSockets();
+    }
+
+    public static get instance(): Server {
+        return this.instance || (this._instance = new this());
     }
 
     start(callback: Function) {
