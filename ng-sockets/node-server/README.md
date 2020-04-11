@@ -4,6 +4,8 @@
 - npm install body-parser
 - npm install @types/express --save-dev # Suggested by node
 - npm install @types/cors --save-dev # Suggested by node
+- npm install --save socket.io
+- npm install @types/socket.io --save-dev # Suggested by node
 
 
 ### Extra tools
