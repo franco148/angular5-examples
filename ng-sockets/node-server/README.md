@@ -19,6 +19,7 @@ Other required commands:
 - Create a tag: `git tag -a <version> -m "message"`
 - Push the tag: `git push --tags`
 
-
+### Required libraries CLIENT SIDE
+- ngx-socket-io: npm i ngx-socket-io
 
 
