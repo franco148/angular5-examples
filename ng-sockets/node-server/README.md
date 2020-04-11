@@ -4,6 +4,8 @@
 - npm install body-parser
 - npm install @types/express --save-dev # Suggested by node
 - npm install @types/cors --save-dev # Suggested by node
+- npm install --save socket.io
+- npm install @types/socket.io --save-dev # Suggested by node
 
 
 ### Extra tools
@@ -17,6 +19,7 @@ Other required commands:
 - Create a tag: `git tag -a <version> -m "message"`
 - Push the tag: `git push --tags`
 
-
+### Required libraries CLIENT SIDE
+- ngx-socket-io: npm i ngx-socket-io
 
 
