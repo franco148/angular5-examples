@@ -48,6 +48,8 @@ export default class Server {
 
             // Listening message event
             socket.message(client, this.io);
+            // New connections
+            socket.newSocketUser(client);
             /* client.on('disconnect', () => {
                 console.log('Client disconnected')
             }); */

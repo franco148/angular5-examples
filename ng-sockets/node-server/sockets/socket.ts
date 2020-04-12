@@ -14,3 +14,13 @@ export const message = (client: Socket, io: socketIO.Server) => {
         io.emit('new-message', payload);
     });
 };
+
+export const newSocketUser = (client: Socket) => {
+    client.on('configure-user', (payload: { name: string }, callback: Function) => {
+        console.log('New user registered to the socket service... ', payload);
+        callback({
+            ok: true,
+            message: `User '${payload.name}' configured successfully`
+        });
+    });
+};
