@@ -58,4 +58,8 @@ export class WebsocketService {
       this.user = JSON.parse(localStorage.getItem('user'));
     }
   }
+
+  getUser() {
+    return this.user;
+  }
 }
