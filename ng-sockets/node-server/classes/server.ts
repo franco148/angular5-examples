@@ -44,12 +44,17 @@ export default class Server {
         console.log('Listening conections - sockets');
 
         this.io.on('connection', client => {
-            console.log('client connected')
+            console.log('client connected id=', client.id);
+
+            // Connect user
+            socket.connectUser(client);
+
+            // New connections
+            socket.configureSocketUser(client);
 
             // Listening message event
             socket.message(client, this.io);
-            // New connections
-            socket.newSocketUser(client);
+
             /* client.on('disconnect', () => {
                 console.log('Client disconnected')
             }); */
