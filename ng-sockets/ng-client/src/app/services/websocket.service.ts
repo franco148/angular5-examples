@@ -11,6 +11,7 @@ export class WebsocketService {
   user: UserModel;
 
   constructor(private socket: Socket) { 
+    this.recoverUser();
     this.checkStatus();
   }
 
@@ -36,8 +37,25 @@ export class WebsocketService {
   }
 
   loginWebSocket(name: string) {
-    this.emit('configure-user', { name }, response => {
-      console.log(response)
+
+    return new Promise((resolve, reject) => {
+      
+      this.emit('configure-user', { name }, response => {
+        console.log(response);
+        this.user = new UserModel(name);
+        this.storeUser();
+        resolve();
+      });
     });
+  }
+
+  storeUser() {
+    localStorage.setItem('user', JSON.stringify(this.user));
+  }
+
+  recoverUser() {
+    if (localStorage.getItem('user')) {
+      this.user = JSON.parse(localStorage.getItem('user'));
+    }
   }
 }
