@@ -56,6 +56,7 @@ export class WebsocketService {
   recoverUser() {
     if (localStorage.getItem('user')) {
       this.user = JSON.parse(localStorage.getItem('user'));
+      this.loginWebSocket(this.user.name);
     }
   }
 
