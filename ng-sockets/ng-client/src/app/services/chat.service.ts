@@ -20,4 +20,8 @@ export class ChatService {
   public getMessage() {
     return this.wsService.listen('new-message');
   }
+
+  public getPrivateMessages() {
+    return this.wsService.listen('private-message');
+  }
 }
