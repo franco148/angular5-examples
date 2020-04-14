@@ -13,6 +13,8 @@ export class AppComponent implements OnInit {
   constructor(private wsService: WebsocketService, private chatService: ChatService) {}
 
   ngOnInit() {
-    this.chatService.getPrivateMessages().subscribe(messages => {});
+    this.chatService.getPrivateMessages().subscribe(messages => {
+      console.log('Got private message ', messages);
+    });
   }
 }
