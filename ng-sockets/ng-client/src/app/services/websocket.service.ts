@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { Socket } from 'ngx-socket-io';
+
 import { UserModel } from '../models/user.model';
 
 @Injectable({
@@ -10,7 +13,7 @@ export class WebsocketService {
   socketStatus: boolean = false;
   user: UserModel;
 
-  constructor(private socket: Socket) { 
+  constructor(private socket: Socket, private router: Router) { 
     this.recoverUser();
     this.checkStatus();
   }
@@ -48,6 +51,20 @@ export class WebsocketService {
         resolve();
       });
     });
+  }
+
+  logoutWebSocket() {
+    this.user = null;
+    localStorage.removeItem('user');
+
+    const payload = {
+      name: 'No name'
+    };
+
+    this.emit('configure-user', payload, () => {
+      console.log('User has logged out');
+    });
+    this.router.navigateByUrl('');
   }
 
   storeUser() {
