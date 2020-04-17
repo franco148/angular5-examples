@@ -28,4 +28,8 @@ export class ChatService {
   public getActiveUsers() {
     return this.wsService.listen('active-users');
   }
+
+  public emitUserRegistration() {
+    return this.wsService.emit('listen-logged-users');
+  }
 }

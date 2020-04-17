@@ -14,7 +14,10 @@ export class UsersListComponent implements OnInit {
   constructor(private chatService: ChatService) { }
 
   ngOnInit() {
-    this.activeUsersObs = this.chatService.getActiveUsers()
+    this.activeUsersObs = this.chatService.getActiveUsers();
+
+    // Emit when new users registers to the chat
+    this.chatService.emitUserRegistration();
   }
 
 }

@@ -40,3 +40,10 @@ export const configureSocketUser = (client: Socket, io: socketIO.Server) => {
         });
     });
 };
+
+export const launchLoggedUserNotification = (client: Socket, io: socketIO.Server) => {
+    client.on('listen-logged-users', () => {
+        console.log('Listen logged users notification...');
+        io.to(client.id).emit('active-users', connectedUsers.loggedUsers());
+    });
+};

@@ -52,6 +52,9 @@ export default class Server {
             // New connections
             socket.configureSocketUser(client, this.io);
 
+            // Emit when new users join to the chat
+            socket.launchLoggedUserNotification(client, this.io);
+
             // Listening message event
             socket.message(client, this.io);
 
