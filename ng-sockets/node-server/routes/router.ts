@@ -1,5 +1,8 @@
 import { Router, Request, Response } from 'express';
 import Server from '../classes/server';
+import { json } from 'body-parser';
+import { connectedUsers } from '../sockets/socket';
+import { UserList } from '../classes/user-list';
 
 const router = Router();
 
@@ -45,6 +48,34 @@ router.post('/messages/:id', (req: Request, res: Response) => {
         payload,
         from,
         id
+    });
+});
+
+// Get active users' IDs
+router.get('/users', (req: Request, res: Response) => {
+    const server = Server.instance;
+
+    server.io.clients((error: any, clients: string[]) => {
+        if (error) {
+            return res.json({
+                        ok: false,
+                        error
+                    });
+        }
+
+        res.json({
+            ok: true,
+            clients
+        });
+    });
+});
+
+// Get users with their names
+router.get('/users/detail', (req: Request, res: Response) => {
+    
+    res.json({
+        ok: true,
+        clients: connectedUsers.loggedUsers()
     });
 });
 

@@ -47,10 +47,13 @@ export default class Server {
             console.log('client connected id=', client.id);
 
             // Connect user
-            socket.connectUser(client);
+            socket.connectUser(client, this.io);
 
             // New connections
-            socket.configureSocketUser(client);
+            socket.configureSocketUser(client, this.io);
+
+            // Emit when new users join to the chat
+            socket.launchLoggedUserNotification(client, this.io);
 
             // Listening message event
             socket.message(client, this.io);
@@ -59,7 +62,7 @@ export default class Server {
                 console.log('Client disconnected')
             }); */
             // Disconnect
-            socket.disconnect(client);
+            socket.disconnect(client, this.io);
         });
     }
 }

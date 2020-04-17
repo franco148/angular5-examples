@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ChatService } from 'src/app/services/chat.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-users-list',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersListComponent implements OnInit {
 
-  constructor() { }
+  activeUsersObs: Observable<any>;
+
+  constructor(private chatService: ChatService) { }
 
   ngOnInit() {
+    this.activeUsersObs = this.chatService.getActiveUsers();
+
+    // Emit when new users registers to the chat
+    this.chatService.emitUserRegistration();
   }
 
 }

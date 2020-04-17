@@ -19,7 +19,7 @@ export class UserList {
     }
 
     loggedUsers() {
-        return this.userList;
+        return this.userList.filter(usr => usr.name !== 'No name');
     }
 
     findUserById(id: string) {
