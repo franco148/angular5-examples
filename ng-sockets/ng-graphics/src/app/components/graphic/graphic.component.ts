@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
 
 import { ChartDataSets } from "chart.js";
 import { Label } from "ng2-charts";
@@ -15,24 +16,35 @@ export class GraphicComponent implements OnInit {
   ];
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-  constructor() { }
+  constructor(private http: HttpClient) {
 
-  ngOnInit(): void {
-    setInterval(() => {
-      const newData = [
-        Math.round(Math.random() * 100),
-        Math.round(Math.random() * 100),
-        Math.round(Math.random() * 100),
-        Math.round(Math.random() * 100),
-        Math.round(Math.random() * 100),
-        Math.round(Math.random() * 100),
-        Math.round(Math.random() * 100)
-      ];
-
-      this.lineChartData = [
-        { data: newData, label: 'Sales' }
-      ];
-    }, 3000);
   }
 
+  ngOnInit(): void {
+    // setInterval(() => {
+    //   const newData = [
+    //     Math.round(Math.random() * 100),
+    //     Math.round(Math.random() * 100),
+    //     Math.round(Math.random() * 100),
+    //     Math.round(Math.random() * 100),
+    //     Math.round(Math.random() * 100),
+    //     Math.round(Math.random() * 100),
+    //     Math.round(Math.random() * 100)
+    //   ];
+
+    //   this.lineChartData = [
+    //     { data: newData, label: 'Sales' }
+    //   ];
+    // }, 3000);
+
+    this.getGraphicData();
+  }
+
+  getGraphicData() {
+    this.http.get('http://localhost:5050/graphic')
+        .subscribe((data: any) => {
+          // console.log(data);
+          this.lineChartData = data;
+        });
+  }
 }
