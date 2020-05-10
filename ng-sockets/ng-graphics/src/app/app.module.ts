@@ -6,10 +6,12 @@ const config: SocketIoConfig = { url: 'http://localhost:5050', options: {} };
 import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
+import { GraphicComponent } from './components/graphic/graphic.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GraphicComponent
   ],
   imports: [
     BrowserModule,
