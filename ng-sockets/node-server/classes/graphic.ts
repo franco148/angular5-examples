@@ -1,10 +1,12 @@
+
 export class GraphicData {
-    private months: string[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    private months: string[] = ['january', 'february', 'march', 'april', 'may', 'june', 'july'];
     private values: number[] = [1, 2, 3, 4, 5, 6, 7];
 
     constructor() {}
 
     getGraphicData() {
+        console.log('Calling graphic endpoint...');
         return [
             { data: this.values, label: 'Sales' }
         ];

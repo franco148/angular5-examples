@@ -2,10 +2,30 @@ import { Router, Request, Response } from 'express';
 import Server from '../classes/server';
 import { json } from 'body-parser';
 import { connectedUsers } from '../sockets/socket';
-import { UserList } from '../classes/user-list';
+import { GraphicData } from '../classes/graphic';
 
 const router = Router();
 
+const graphic = new GraphicData();
+
+// ======================= GRAPHIC ROUTES  =============================
+router.get('/graphic', (req: Request, res: Response) => {
+    res.json(graphic.getGraphicData());
+});
+
+router.post('/graphic', (req: Request, res: Response) => {
+    
+    const month = req.body.month;
+    const units = Number(req.body.units);
+
+    console.log('Mes: ', month, "  Units: ", units);
+
+    graphic.increaseValue(month, units);
+
+    res.json(graphic.getGraphicData());
+});
+
+// ======================= FIRST ROUTES  =============================
 router.get('/messages', (req: Request, res: Response) => {
     res.json({
         ok: true,
