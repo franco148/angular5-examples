@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 
 import { ChartDataSets } from "chart.js";
 import { Label } from "ng2-charts";
+import { WebsocketService } from 'src/app/services/websocket.service';
 
 @Component({
   selector: 'app-graphic',
@@ -16,7 +17,7 @@ export class GraphicComponent implements OnInit {
   ];
   public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private wsService: WebsocketService) {
 
   }
 
@@ -38,6 +39,7 @@ export class GraphicComponent implements OnInit {
     // }, 3000);
 
     this.getGraphicData();
+    this.listenSocket();
   }
 
   getGraphicData() {
@@ -46,5 +48,12 @@ export class GraphicComponent implements OnInit {
           // console.log(data);
           this.lineChartData = data;
         });
+  }
+
+  listenSocket() {
+    this.wsService.listen('change-graphic-data').subscribe((data: any) => {
+      console.log('socket', data);
+      this.lineChartData = data;
+    });
   }
 }
