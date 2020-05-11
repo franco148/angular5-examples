@@ -17,10 +17,12 @@ router.post('/graphic', (req: Request, res: Response) => {
     
     const month = req.body.month;
     const units = Number(req.body.units);
-
-    console.log('Mes: ', month, "  Units: ", units);
+    // With postman, it is sent as body x-wwww-form-urlencoded
 
     graphic.increaseValue(month, units);
+
+    const server = Server.instance;
+    server.io.emit('change-graphic-data', graphic.getGraphicData());
 
     res.json(graphic.getGraphicData());
 });
