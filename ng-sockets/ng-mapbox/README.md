@@ -25,3 +25,29 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+
+## Dev Notes
+- Since mapbox-gl is not created for typescript, we will need to install like a intellicense for that. Search it as `mapbox-gl types`
+
+```bash
+npm install --save-dev @types/mapbox-gl
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
