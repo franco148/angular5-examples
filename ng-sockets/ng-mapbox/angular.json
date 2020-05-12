@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ng-mapbox"
+    }
+  },
+  "defaultProject": "ng-mapbox",
+  "cli": {
+    "analytics": false
+  }
 }
