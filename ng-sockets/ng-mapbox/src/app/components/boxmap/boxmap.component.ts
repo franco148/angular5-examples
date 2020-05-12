@@ -73,5 +73,22 @@ export class BoxmapComponent implements OnInit {
     .setLngLat([place.lng, place.lat])
     .setPopup(customPopup)
     .addTo(this.map);
+
+    marker.on('drag', ()=> {
+      const lngLat = marker.getLngLat();
+      console.log(lngLat);
+    });
+  }
+
+  createMarker() {
+    const newMarker: Place = {
+      id: new Date().toISOString(),
+      lng: -75.75512993582937,
+      lat: 45.349977429009954,
+      name: 'NO name',
+      color: '#' + Math.floor(Math.random()*16777215).toString(16)
+    };
+
+    this.addMarker(newMarker);
   }
 }
