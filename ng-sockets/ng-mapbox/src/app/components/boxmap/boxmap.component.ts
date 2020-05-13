@@ -57,14 +57,24 @@ export class BoxmapComponent implements OnInit {
 
   addMarker(place: Place) {
 
-    const popupHtml = `<h2>${place.name}</h2>
-                       <br>
-                       <button>Remove</button>`;
+    // const popupHtml = `<h2>${place.name}</h2>
+    //                    <br>
+    //                    <button>Remove</button>`;
+
+    const h2 = document.createElement('h2');
+    h2.innerText = place.name;
+
+    const btnRemove = document.createElement('button');
+    btnRemove.innerText = 'Remove';
+
+    const div = document.createElement('div');
+    div.append(h2, btnRemove);
 
     const customPopup = new mapboxgl.Popup({
       offset: 25,
       closeOnClick: false
-    }).setHTML(popupHtml);
+    // }).setHTML(popupHtml);
+    }).setDOMContent(div);
 
     const marker = new mapboxgl.Marker({
       draggable: true,
@@ -77,6 +87,13 @@ export class BoxmapComponent implements OnInit {
     marker.on('drag', ()=> {
       const lngLat = marker.getLngLat();
       console.log(lngLat);
+
+      // TODO: Send notification when dragging a marker
+    });
+
+    btnRemove.addEventListener('click', () => {
+      marker.remove();
+      // TODO: Send notification when removing a marker.
     });
   }
 
