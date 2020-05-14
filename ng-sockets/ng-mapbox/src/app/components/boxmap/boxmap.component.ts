@@ -41,6 +41,14 @@ export class BoxmapComponent implements OnInit {
     this.createMap();
   }
 
+  listenSockets() {
+    // new marker
+
+    // move marker
+
+    // remove marker
+  }
+
   createMap() {
     (mapboxgl as any).accessToken = 'pk.eyJ1IjoiZnJhbmNvZnJhbCIsImEiOiJja2EzOTkydTQwbTkxM25xa3J6bThmb2hmIn0.UghzC-hUNQPAjKOt794qhA';
     this.map = new mapboxgl.Map({
