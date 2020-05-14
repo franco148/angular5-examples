@@ -3,10 +3,19 @@ import Server from '../classes/server';
 import { json } from 'body-parser';
 import { connectedUsers } from '../sockets/socket';
 import { GraphicData } from '../classes/graphic';
+import { MapBox } from '../classes/mapbox';
 
 const router = Router();
 
 const graphic = new GraphicData();
+
+const mapbox = new MapBox();
+
+// ======================= MAPBOX ROUTES  =============================
+
+router.get('/map', (req: Request, res: Response) => {
+    res.json(mapbox.getMarkers());
+});
 
 // ======================= GRAPHIC ROUTES  =============================
 router.get('/graphic', (req: Request, res: Response) => {
