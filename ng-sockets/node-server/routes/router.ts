@@ -1,15 +1,14 @@
 import { Router, Request, Response } from 'express';
 import Server from '../classes/server';
 import { json } from 'body-parser';
-import { connectedUsers } from '../sockets/socket';
+import { connectedUsers, mapbox } from '../sockets/socket';
 import { GraphicData } from '../classes/graphic';
-import { MapBox } from '../classes/mapbox';
 
 const router = Router();
 
 const graphic = new GraphicData();
 
-const mapbox = new MapBox();
+
 
 // ======================= MAPBOX ROUTES  =============================
 

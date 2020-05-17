@@ -32,6 +32,10 @@ export class MapBox {
         return this.markers;
     }
 
+    addMarker(marker: Marker) {
+        this.markers[marker.id] = marker;
+    }
+
     removeMarker(id: string) {
         delete this.markers[id];
         return this.getMarkers();

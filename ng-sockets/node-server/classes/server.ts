@@ -46,6 +46,9 @@ export default class Server {
         this.io.on('connection', client => {
             console.log('client connected id=', client.id);
 
+            // Configuring mapbox sockets
+            socket.mapSockets(client, this.io);
+
             // Connect user
             socket.connectUser(client, this.io);
 
