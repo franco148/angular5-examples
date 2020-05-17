@@ -19,6 +19,11 @@ export const mapSockets = (client: Socket, io: socketIO.Server) => {
         // Broadcast for emitting to all clients except to the one that emitted the socker.
         client.broadcast.emit('new-marker', marker);
     });
+
+    client.on('remove-marker', (markerId: string) => {
+        mapbox.removeMarker(markerId);
+        client.broadcast.emit('remove-marker', markerId);
+    });
 };
 
 // Chat user events
