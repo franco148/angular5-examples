@@ -45,4 +45,9 @@ export class MapBox {
         this.markers[marker.id].lng = marker.lng;
         this.markers[marker.id].lat = marker.lat;
     }
+
+    moveMarker2(markerId: string, position: any) {
+        this.markers[markerId].lng = position.lng;
+        this.markers[markerId].lat = position.lat;
+    }
 }

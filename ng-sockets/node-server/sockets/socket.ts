@@ -24,6 +24,11 @@ export const mapSockets = (client: Socket, io: socketIO.Server) => {
         mapbox.removeMarker(markerId);
         client.broadcast.emit('remove-marker', markerId);
     });
+
+    client.on('move-marker', (markerRef: { markerId: string, position: any}) => {
+        mapbox.moveMarker2(markerRef.markerId, markerRef.position);
+        client.broadcast.emit('move-marker', markerRef);
+    });
 };
 
 // Chat user events
