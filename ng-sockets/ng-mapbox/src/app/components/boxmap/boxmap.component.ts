@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import * as mapboxgl from "mapbox-gl";
 
 import { Place } from 'src/app/interfaces/interfaces';
-import { HttpClient } from '@angular/common/http';
+import { WebsocketService } from 'src/app/services/websocket.service';
 
 interface MarkersDto {
   [key: string]: Place
@@ -21,7 +22,7 @@ export class BoxmapComponent implements OnInit {
   // places: Place[] = [];
   places: MarkersDto = {};
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private wsService: WebsocketService) { }
 
   ngOnInit(): void {
     this.http.get<MarkersDto>('http://localhost:5050/map').subscribe(placesResponse => {
@@ -29,10 +30,16 @@ export class BoxmapComponent implements OnInit {
       this.places = placesResponse;
       this.createMap();
     });
+
+    this.listenSockets();
   }
 
   listenSockets() {
     // new marker
+    this.wsService.listen('new-marker')
+        .subscribe((marker: Place) => {
+          this.addMarker(marker);
+        });
 
     // move marker
 
@@ -88,7 +95,7 @@ export class BoxmapComponent implements OnInit {
 
     marker.on('drag', ()=> {
       const lngLat = marker.getLngLat();
-      console.log(lngLat);
+      // console.log(lngLat);
 
       // TODO: Send notification when dragging a marker
     });
@@ -109,5 +116,8 @@ export class BoxmapComponent implements OnInit {
     };
 
     this.addMarker(newMarker);
+
+    // emit marker-creation
+    this.wsService.emit('new-marker', newMarker);
   }
 }
