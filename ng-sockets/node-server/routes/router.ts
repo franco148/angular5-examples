@@ -1,12 +1,20 @@
 import { Router, Request, Response } from 'express';
 import Server from '../classes/server';
 import { json } from 'body-parser';
-import { connectedUsers } from '../sockets/socket';
+import { connectedUsers, mapbox } from '../sockets/socket';
 import { GraphicData } from '../classes/graphic';
 
 const router = Router();
 
 const graphic = new GraphicData();
+
+
+
+// ======================= MAPBOX ROUTES  =============================
+
+router.get('/map', (req: Request, res: Response) => {
+    res.json(mapbox.getMarkers());
+});
 
 // ======================= GRAPHIC ROUTES  =============================
 router.get('/graphic', (req: Request, res: Response) => {
