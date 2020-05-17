@@ -21,6 +21,7 @@ export class BoxmapComponent implements OnInit {
 
   // places: Place[] = [];
   places: MarkersDto = {};
+  mapboxMarkers: { [key:string]: mapboxgl.Marker } = {};
 
   constructor(private http: HttpClient, private wsService: WebsocketService) { }
 
@@ -44,6 +45,11 @@ export class BoxmapComponent implements OnInit {
     // move marker
 
     // remove marker
+    this.wsService.listen('remove-marker')
+        .subscribe((markerId: string) => {
+          this.mapboxMarkers[markerId].remove();
+          delete this.mapboxMarkers[markerId];
+        });
   }
 
   createMap() {
@@ -102,8 +108,12 @@ export class BoxmapComponent implements OnInit {
 
     btnRemove.addEventListener('click', () => {
       marker.remove();
+
       // TODO: Send notification when removing a marker.
+      this.wsService.emit('remove-marker', place.id);
     });
+
+    this.mapboxMarkers[place.id] = marker;
   }
 
   createMarker() {
