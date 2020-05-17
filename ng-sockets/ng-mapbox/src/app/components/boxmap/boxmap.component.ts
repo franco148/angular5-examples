@@ -42,13 +42,18 @@ export class BoxmapComponent implements OnInit {
           this.addMarker(marker);
         });
 
-    // move marker
-
     // remove marker
     this.wsService.listen('remove-marker')
         .subscribe((markerId: string) => {
           this.mapboxMarkers[markerId].remove();
           delete this.mapboxMarkers[markerId];
+        });
+
+    // move marker
+    this.wsService.listen('move-marker')
+        .subscribe((markerRef: { markerId: string, position: mapboxgl.LngLat}) => {
+          const mapMarker = this.mapboxMarkers[markerRef.markerId];
+          mapMarker.setLngLat(markerRef.position);
         });
   }
 
@@ -104,6 +109,11 @@ export class BoxmapComponent implements OnInit {
       // console.log(lngLat);
 
       // TODO: Send notification when dragging a marker
+      const payload = {
+        markerId: place.id,
+        position: lngLat
+      };
+      this.wsService.emit('move-marker', payload);
     });
 
     btnRemove.addEventListener('click', () => {
