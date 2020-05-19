@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "ng-gmaps"
+    }
+  },
+  "defaultProject": "ng-gmaps",
+  "cli": {
+    "analytics": false
+  }
 }
