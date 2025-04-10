@@ -28,7 +28,21 @@ console.log(vUnkown.foo()); // This causes an error, because we have an unknown 
 // doesn't happen with ANY
 
 
+// Why ANY is BAD IDEA in TypeScript?
+/**
+ * First of all, we need to remember that TypeScript disables completely ANY checks inside language itself
+ * which actually means, if we write the followig code, it wil not throw compilation issue (TypeScript doesn't validate it)
+ */
 
+let foo: any = 'foo';
+console.log(foo.bar());
+
+/**
+ * When can we use it? Tipically we want to use ANY if we don't know what data type we will get, for example:
+ * If we have the following method, when we don't know what type of argument we are going to have, it is preferible 
+ * to use UNKNOWN instead of ANY, or simply use generics.
+ */
+const foo2 = (bar: unknown): void => {}
 
 
 
